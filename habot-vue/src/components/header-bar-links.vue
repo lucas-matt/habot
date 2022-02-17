@@ -1,8 +1,32 @@
+<template>
+  <div class="navbar-menu">
+    <div class="navbar-end">
+      <div class="navbar-item">
+        <div class="buttons">
+          <a
+              v-if="!account"
+              @click="SignIn"
+              target="_blank"
+              rel="noopener noreferrer"
+          >
+            Hello
+            <i class="fas fa-sign-in-alt fa-2x" aria-hidden="false"></i>
+          </a>
+          <a v-else @click="SignOut" target="_blank" rel="noopener noreferrer">
+            <i class="fas fa-sign-out-alt fa-2x" aria-hidden="false"></i>
+          </a>
+          <div v-if="account">{{ account.name }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
 <script>
-import {PublicClientApplication} from '@azure/msal-browser';
+import { PublicClientApplication } from '@azure/msal-browser';
 
 export default {
-  name: 'HeaderBar',
+  name: 'HeaderBarLinks',
   data() {
     return {
       account: undefined,
@@ -17,7 +41,9 @@ export default {
     );
   },
   mounted() {
+    console.log(this.$msalInstance)
     const accounts = this.$msalInstance.getAllAccounts();
+    console.log(accounts)
     if (accounts.length == 0) {
       return;
     }
