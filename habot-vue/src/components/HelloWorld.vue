@@ -24,12 +24,8 @@
 </template>
 
 <script>
-import customTokenCredential from '../CustomTokenProvider';
-import { BlobServiceClient } from '@azure/storage-blob';
 import { PublicClientApplication } from '@azure/msal-browser';
 import { mapMutations } from 'vuex';
-
-const storageAccountName = 'cmatskasbackup';
 
 export default {
   name: 'HelloWorld',
@@ -44,9 +40,6 @@ export default {
         'login',
         async function (account) {
           this.account = account;
-          console.log(this.account);
-          console.log('Getting storage data');
-          await this.getAzureStorageData();
         }.bind(this),
     ),
         this.$emitter.on('logout', () => {
@@ -56,29 +49,6 @@ export default {
   },
   methods: {
     ...mapMutations(['setAccessToken']),
-
-    async getAzureStorageData() {
-      if(this.$store.state.accessToken == ''){
-        await this.getAccessToken();
-      }
-      let tokenCredential = new customTokenCredential(this.$store.state.accessToken);
-      const blobClient = new BlobServiceClient(
-          `https://${storageAccountName}.blob.core.windows.net`,
-          tokenCredential,
-      );
-
-      let i = 1;
-      const iter = blobClient.listContainers();
-      let containerItem = await iter.next();
-      while (!containerItem.done) {
-        console.log(`Container ${i++}: ${containerItem.value.name}`);
-        this.containers.push({
-          id: containerItem.value.properties.etag,
-          name: containerItem.value.name,
-        });
-        containerItem = await iter.next();
-      }
-    },
     async getAccessToken(){
       let request = {
         scopes: ['https://storage.azure.com/user_impersonation'],

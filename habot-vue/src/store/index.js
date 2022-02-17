@@ -5,13 +5,13 @@ const store = createStore({
         return {
             msalConfig: {
                 auth: {
-                    clientId: '5def4d67-7693-4a08-a71f-f3ff47182412',
+                    clientId: 'cb274820-595f-4f53-bd12-bdbf45bfd69b',
                     authority:
-                        'https://login.microsoftonline.com/e801a3ad-3690-4aa0-a142-1d77cb360b07',
+                        'https://login.microsoftonline.com/consumers',
                 },
                 cache: {
                     cacheLocation: 'localStorage',
-                },
+                }
             },
             accessToken:""
         };

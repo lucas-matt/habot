@@ -9,11 +9,10 @@
               target="_blank"
               rel="noopener noreferrer"
           >
-            Hello
-            <i class="fas fa-sign-in-alt fa-2x" aria-hidden="false"></i>
+            <i class="fas fa-sign-in-alt fa-2x" aria-hidden="false">SignIn</i>
           </a>
           <a v-else @click="SignOut" target="_blank" rel="noopener noreferrer">
-            <i class="fas fa-sign-out-alt fa-2x" aria-hidden="false"></i>
+            <i class="fas fa-sign-out-alt fa-2x" aria-hidden="false">SignOut</i>
           </a>
           <div v-if="account">{{ account.name }}</div>
         </div>
@@ -30,8 +29,6 @@ export default {
   data() {
     return {
       account: undefined,
-      github: 'https://github.com/cmatskas',
-      twitter: 'https://twitter.com/christosmatskas',
       signin: 'https://microsoft.com',
     };
   },
@@ -41,9 +38,7 @@ export default {
     );
   },
   mounted() {
-    console.log(this.$msalInstance)
     const accounts = this.$msalInstance.getAllAccounts();
-    console.log(accounts)
     if (accounts.length == 0) {
       return;
     }
