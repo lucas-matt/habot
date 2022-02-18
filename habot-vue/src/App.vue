@@ -1,19 +1,20 @@
 <template>
-  <HeaderBar />
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="content-container is-fullheight">
+    <HeaderBar />
+    <Home msg="Welcome to Your Vue.js App"/>
+  </div>
 </template>
 
 <script>
 import HeaderBar from '@/components/header-bar';
-import HelloWorld from '@/components/HelloWorld';
+import Home from '@/components/Home';
 import store from '@/store';
 
 export default {
   name: 'App',
   store,
   components: {
-    HelloWorld, HeaderBar
+    Home, HeaderBar
   }
 }
 </script>

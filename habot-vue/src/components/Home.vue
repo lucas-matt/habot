@@ -1,5 +1,5 @@
 <template>
-  <div class="content-container">
+  <div class="content-container is-fullheight has-background-info">
     <div class="section content-title-group">
       <h2 class="title">Welcome to the Azure AD + Storage app with Vue.js</h2>
     </div>
@@ -28,7 +28,7 @@ import { PublicClientApplication } from '@azure/msal-browser';
 import { mapMutations } from 'vuex';
 
 export default {
-  name: 'HelloWorld',
+  name: 'Home',
   data() {
     return {
       account: undefined,

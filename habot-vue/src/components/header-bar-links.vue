@@ -1,16 +1,17 @@
 <template>
-  <div class="navbar-menu">
+  <div class="navbar-menu m-1">
     <div class="navbar-end">
       <div class="navbar-item">
         <div class="buttons">
-          <a
+          <button
               v-if="!account"
               @click="SignIn"
               target="_blank"
+              class="button"
               rel="noopener noreferrer"
           >
-            <i class="fas fa-sign-in-alt fa-2x" aria-hidden="false">SignIn</i>
-          </a>
+            Sign in
+          </button>
           <a v-else @click="SignOut" target="_blank" rel="noopener noreferrer">
             <i class="fas fa-sign-out-alt fa-2x" aria-hidden="false">SignOut</i>
           </a>
