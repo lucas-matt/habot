@@ -6,9 +6,9 @@ use crate::model::*;
 
 pub trait UserRepository {
 
-    fn find(self, id: String) -> Option<User>;
+    fn find(&self, id: String) -> Option<User>;
 
-    fn update(self, user:User) -> Result<(), Error>;
+    fn update(&self, user:User) -> Result<(), Error>;
 
 }
 
@@ -55,11 +55,11 @@ pub enum Error {
 }
 
 impl UserRepository for MongoDB {
-    fn find(self, id: String) -> Option<User> {
-        
+    fn find(&self, id: String) -> Option<User> {
+        todo!()
     }
 
-    fn update(self, user: User) -> Result<(), Error>{
+    fn update(&self, user: User) -> Result<(), Error>{
         self.user.insert_one(user, None)
             .ok()
             .ok_or(WriteErr)?;

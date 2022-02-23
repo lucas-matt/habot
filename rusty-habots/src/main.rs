@@ -12,12 +12,8 @@ mod model;
 
 fn main() {
     let db = data::db();
-    db.update(User{
-        id: Some("123".to_string()),
-        name: "Bert".to_string(),
-        habits: vec![]
-    });
     rocket::ignite()
         .mount("/api", routes![routes::hello])
+        .manage(db)
         .launch();
 }
