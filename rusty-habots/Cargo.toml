@@ -7,3 +7,14 @@ edition = "2021"
 
 [dependencies]
 rocket = "0.4.10"
+
+[dependencies.mongodb]
+version = "2.1.0"
+default-features = false
+features = ["sync"]
+
+[dependencies.serde]
+version = "1.0.136"
+
+[dependencies.bson]
+version = "2.1.0"
