@@ -1,0 +1,34 @@
+[import](common.lg)
+
+# TextInput_Prompt_pWNRkI()
+[Activity
+    Text = ${TextInput_Prompt_pWNRkI_text()}
+]
+
+# TextInput_Prompt_pWNRkI_text()
+- What kind of habit are you looking to start? For example, "exercise more"
+- What would you like to do? For example, "eat heathier"
+- How would you like to change? For example, "read more books"
+- ```
+```
+# ConfirmInput_Prompt_RtagWI()
+[Activity
+    Text = ${ConfirmInput_Prompt_RtagWI_text()}
+]
+
+# ConfirmInput_Prompt_RtagWI_text()
+- So you'd like to start ${dialog.habit}?
+# SendActivity_GKuI3T()
+[Activity
+    Text = ${SendActivity_GKuI3T_text()}
+]
+
+# SendActivity_GKuI3T_text()
+- Great, I'll make a note of that
+# SendActivity_3z2XJp()
+[Activity
+    Text = ${SendActivity_3z2XJp_text()}
+]
+
+# SendActivity_3z2XJp_text()
+- Oh sorry, I misunderstood ${dialog.habit}, let me try that again

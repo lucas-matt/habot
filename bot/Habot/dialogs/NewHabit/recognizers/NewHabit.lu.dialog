@@ -1,0 +1,8 @@
+{
+  "$kind": "Microsoft.MultiLanguageRecognizer",
+  "id": "LUIS_NewHabit",
+  "recognizers": {
+    "en-us": "NewHabit.en-us.lu",
+    "": "NewHabit.en-us.lu"
+  }
+}

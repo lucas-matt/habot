@@ -1,0 +1,6 @@
+# files generated during the lubuild process
+generated/
+local.settings.json
+node_modules
+*.log
+settings

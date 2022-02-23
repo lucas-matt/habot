@@ -1,0 +1,8 @@
+{
+  "$kind": "Microsoft.MultiLanguageRecognizer",
+  "id": "LUIS_Habot",
+  "recognizers": {
+    "en-us": "Habot.en-us.lu",
+    "": "Habot.en-us.lu"
+  }
+}
