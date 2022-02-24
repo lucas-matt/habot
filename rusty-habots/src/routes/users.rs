@@ -12,7 +12,7 @@ pub fn add_user(repo:State<Box<dyn UberRepository + Sync + Send>>, id: &RawStr, 
     let mut user = json.into_inner();
     user.id = Some(id.to_string());
 
-    let result = repo.update(&user);
+    let result = repo.update_user(&user);
     if let Err(err) = result {
         warn!("Encountered error {:?}", err);
         return Err(Status::InternalServerError)
@@ -24,7 +24,7 @@ pub fn add_user(repo:State<Box<dyn UberRepository + Sync + Send>>, id: &RawStr, 
 #[get("/users/<id>")]
 pub fn get_user(repo:State<Box<dyn UberRepository + Sync + Send>>, id: &RawStr) -> Result<Json<User>, Status> {
     info!("Find user {:?}", id);
-    let result = repo.find(id.to_string());
+    let result = repo.find_user(id.to_string());
     match result {
         Some(user) => Ok(Json(user)),
         None => Err(Status::NotFound)
