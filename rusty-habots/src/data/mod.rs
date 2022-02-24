@@ -1,16 +1,30 @@
+use log::{info, warn};
 use mongodb::bson::{Bson, doc};
-use mongodb::sync::{Client, Database};
+use mongodb::sync::Client;
 use mongodb::sync::Collection;
-use crate::data::Error::{ParseErr, WriteErr};
+
+use crate::data::Error::{ParseErr, ReadErr, WriteErr};
 use crate::model::*;
 
 pub trait UserRepository {
 
     fn find(&self, id: String) -> Option<User>;
 
-    fn update(&self, user:User) -> Result<(), Error>;
+    fn update(&self, user:&User) -> Result<(), Error>;
 
 }
+
+pub trait HabitRepository {
+
+}
+
+pub trait MetricRespository {
+
+}
+
+pub trait UberRepository: UserRepository + HabitRepository + MetricRespository {}
+
+pub type Repository = dyn UberRepository + Send + Sync;
 
 struct Creds {
     connection: String,
@@ -34,7 +48,7 @@ fn read_creds() -> Creds {
     }
 }
 
-pub struct MongoDB {
+struct MongoDB {
     user: Collection<User>
 }
 
@@ -42,24 +56,28 @@ impl MongoDB {
     fn new() -> MongoDB {
         let creds = read_creds();
         let client = Client::with_uri_str(creds.connection).expect("Failed to create client");
-        let mut db = client.database(&*creds.database);
+        let db = client.database(&*creds.database);
         MongoDB {
             user: db.collection("users")
         }
     }
 }
 
-pub enum Error {
-    ParseErr,
-    WriteErr
-}
-
 impl UserRepository for MongoDB {
     fn find(&self, id: String) -> Option<User> {
-        todo!()
+        let result = self.user.find_one(doc! {
+            "_id": &id
+        }, None);
+        match result {
+            Ok(found) => found,
+            Err(error) => {
+                warn!("Reading user {:?} encountered error {:?}", &id, error);
+                None
+            }
+        }
     }
 
-    fn update(&self, user: User) -> Result<(), Error>{
+    fn update(&self, user: &User) -> Result<(), Error> {
         self.user.insert_one(user, None)
             .ok()
             .ok_or(WriteErr)?;
@@ -67,6 +85,25 @@ impl UserRepository for MongoDB {
     }
 }
 
-pub fn db() -> MongoDB {
-    MongoDB::new()
+impl HabitRepository for MongoDB {
+
+}
+
+impl MetricRespository for MongoDB {
+
+}
+
+impl UberRepository for MongoDB {
+
+}
+
+#[derive(Debug)]
+pub enum Error {
+    ParseErr,
+    WriteErr,
+    ReadErr
+}
+
+pub fn db() -> Box<Repository> {
+    Box::new(MongoDB::new())
 }
