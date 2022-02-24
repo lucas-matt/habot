@@ -1,35 +1,29 @@
-use log::{info, warn};
-use mongodb::bson::{Bson, doc};
+use log::warn;
+use mongodb::bson::doc;
 use mongodb::sync::Client;
 use mongodb::sync::Collection;
 
-use crate::data::Error::{DeleteErr, ParseErr, ReadErr, WriteErr};
+use crate::data::Error::{DeleteErr, WriteErr};
 use crate::model::*;
 
 pub trait UserRepository {
-
     fn find_user(&self, id: String) -> Option<User>;
 
-    fn update_user(&self, user:&User) -> Result<(), Error>;
-
+    fn update_user(&self, user: &User) -> Result<(), Error>;
 }
 
 pub trait HabitRepository {
-
-    fn add_habit(&self, habit:&Habit) -> Result<(), Error>;
+    fn add_habit(&self, habit: &Habit) -> Result<(), Error>;
 
     fn remove_habit(&self, id: String) -> Result<(), Error>;
 
-    fn find_habit(&self, user_id: String) -> Option<Vec<Habit>>;
-
+    fn find_habits(&self, user_id: String) -> Option<Vec<Habit>>;
 }
 
 pub trait MetricRespository {
-
     fn log_metric(&self, metric: &Metric) -> Result<(), Error>;
 
     fn find_metrics(&self, habit_id: String) -> Option<Vec<Metric>>;
-
 }
 
 pub trait UberRepository: UserRepository + HabitRepository + MetricRespository {}
@@ -38,7 +32,7 @@ pub type Repository = dyn UberRepository + Send + Sync;
 
 struct Creds {
     connection: String,
-    database: String
+    database: String,
 }
 
 fn read_creds() -> Creds {
@@ -54,14 +48,14 @@ fn read_creds() -> Creds {
         .to_string();
     return Creds {
         connection,
-        database
-    }
+        database,
+    };
 }
 
 struct MongoDB {
     users: Collection<User>,
     habits: Collection<Habit>,
-    metrics: Collection<Metric>
+    metrics: Collection<Metric>,
 }
 
 impl MongoDB {
@@ -72,16 +66,21 @@ impl MongoDB {
         MongoDB {
             users: db.collection("users"),
             habits: db.collection("habits"),
-            metrics: db.collection("metrics")
+            metrics: db.collection("metrics"),
         }
     }
 }
 
+impl UberRepository for MongoDB {}
+
 impl UserRepository for MongoDB {
     fn find_user(&self, id: String) -> Option<User> {
-        let result = self.users.find_one(doc! {
-            "_id": &id
-        }, None);
+        let result = self.users.find_one(
+            doc! {
+                "_id": &id
+            },
+            None,
+        );
         match result {
             Ok(found) => found,
             Err(error) => {
@@ -92,54 +91,77 @@ impl UserRepository for MongoDB {
     }
 
     fn update_user(&self, user: &User) -> Result<(), Error> {
-        self.users.insert_one(user, None)
-            .ok()
-            .ok_or(WriteErr)?;
+        self.users.insert_one(user, None).ok().ok_or(WriteErr)?;
         Ok(())
     }
 }
 
 impl HabitRepository for MongoDB {
     fn add_habit(&self, habit: &Habit) -> Result<(), Error> {
-        self.habits.insert_one(habit, None)
-            .ok()
-            .ok_or(WriteErr)?;
+        self.habits.insert_one(habit, None).ok().ok_or(WriteErr)?;
         Ok(())
     }
 
     fn remove_habit(&self, id: String) -> Result<(), Error> {
-        self.habits.delete_one(doc! {"_id": id}, None)
+        self.habits
+            .delete_one(doc! {"_id": id}, None)
             .ok()
             .ok_or(DeleteErr)?;
         Ok(())
     }
 
-    fn find_habit(&self, user_id: String) -> Option<Vec<Habit>> {
-        self.habits.find(doc! {"user": user_id}, None)
-
+    fn find_habits(&self, user_id: String) -> Option<Vec<Habit>> {
+        let result = self.habits.find(doc! {"user": &user_id}, None);
+        match result {
+            Ok(found) => {
+                let records: Result<Vec<Habit>, mongodb::error::Error> = found.collect();
+                match records {
+                    Ok(packed) => Some(packed),
+                    _ => None,
+                }
+            }
+            Err(error) => {
+                warn!(
+                    "Reading habits for user {:?} encountered error {:?}",
+                    &user_id, error
+                );
+                None
+            }
+        }
     }
 }
 
 impl MetricRespository for MongoDB {
     fn log_metric(&self, metric: &Metric) -> Result<(), Error> {
-        todo!()
+        self.metrics.insert_one(metric, None).ok().ok_or(WriteErr)?;
+        Ok(())
     }
 
     fn find_metrics(&self, habit_id: String) -> Option<Vec<Metric>> {
-        todo!()
+        let result = self.metrics.find(doc! {"habit": &habit_id}, None);
+        match result {
+            Ok(found) => {
+                let records: Result<Vec<Metric>, mongodb::error::Error> = found.collect();
+                match records {
+                    Ok(packed) => Some(packed),
+                    _ => None,
+                }
+            }
+            Err(error) => {
+                warn!(
+                    "Reading metrics for habit {:?} encountered error {:?}",
+                    &habit_id, error
+                );
+                None
+            }
+        }
     }
-}
-
-impl UberRepository for MongoDB {
-
 }
 
 #[derive(Debug)]
 pub enum Error {
-    ParseErr,
     WriteErr,
     DeleteErr,
-    ReadErr
 }
 
 pub fn db() -> Box<Repository> {
