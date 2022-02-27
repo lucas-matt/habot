@@ -5,7 +5,7 @@ const store = createStore({
         return {
             msalConfig: {
                 auth: {
-                    clientId: 'cb274820-595f-4f53-bd12-bdbf45bfd69b',
+                    clientId: '8064f24d-260c-4abb-87f1-21e0ccf342d5',
                     authority:
                         'https://login.microsoftonline.com/consumers',
                 },

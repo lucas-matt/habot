@@ -1,20 +1,17 @@
 <template>
-  <div class="content-container is-fullheight">
-    <HeaderBar />
-    <Home msg="Welcome to Your Vue.js App"/>
+  <div class="content-container is-fullheight has-background-info">
+    <router-view />
   </div>
 </template>
 
 <script>
-import HeaderBar from '@/components/header-bar';
-import Home from '@/components/Home';
 import store from '@/store';
 
 export default {
   name: 'App',
   store,
+
   components: {
-    Home, HeaderBar
   }
 }
 </script>
@@ -31,4 +28,17 @@ export default {
 
 <style lang="scss">
 @import '@/styles/index.scss';
+
+body {
+  height: 100vh;
+}
+
+html {
+  height: 100vh;
+}
+
+.content-container {
+  height: 100vh;
+}
+
 </style>
