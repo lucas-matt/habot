@@ -7,10 +7,11 @@
           Coach
         </p>
       </div>
-      <div class="hero-body has-background-white is-vcentered">
-        <Chat direct-line-secret="yourSecret_3g9h459gb4etrvo8e4bter4tb"/>
+      <div class="hero-container has-background-white">
+        <div class="hero-body is-vcentered">
+          <Chat direct-line-secret="yourSecret_3g9h459gb4etrvo8e4bter4tb"/>
+        </div>
       </div>
-
     </section>
   </div>
 </template>
@@ -44,7 +45,13 @@ export default {
 
 .hero-body {
   overflow-y: auto;
+  height: 100%;
+}
+
+.hero-container {
   height: 75vh;
+  border-radius: 2em;
+  padding: 1em;
 }
 
 </style>

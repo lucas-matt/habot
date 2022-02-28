@@ -55,7 +55,8 @@ export default {
       let userAvatarInitials = initials(this.account);
       console.log(userAvatarInitials);
       const styleOptions = {
-        botAvatarInitials: 'BF',
+        botAvatarInitials: 'HB',
+        botAvatarImage: '/images/bot.gif',
         userAvatarInitials: userAvatarInitials
       };
 
