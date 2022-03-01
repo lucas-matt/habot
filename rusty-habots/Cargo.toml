@@ -9,6 +9,7 @@ edition = "2021"
 rocket = "0.4.10"
 rocket_contrib = "0.4.10"
 log = "0.4.14"
+uuid = "0.8.2"
 
 [dependencies.mongodb]
 version = "2.1.0"

@@ -2,6 +2,7 @@ use log::warn;
 use mongodb::bson::doc;
 use mongodb::sync::Client;
 use mongodb::sync::Collection;
+use uuid::Uuid;
 
 use crate::data::Error::{DeleteErr, WriteErr};
 use crate::model::*;
@@ -13,7 +14,7 @@ pub trait UserRepository {
 }
 
 pub trait HabitRepository {
-    fn add_habit(&self, habit: &Habit) -> Result<(), Error>;
+    fn add_habit(&self, habit: &mut Habit) -> Result<(), Error>;
 
     fn remove_habit(&self, id: String) -> Result<(), Error>;
 
@@ -21,7 +22,7 @@ pub trait HabitRepository {
 }
 
 pub trait MetricRespository {
-    fn log_metric(&self, metric: &Metric) -> Result<(), Error>;
+    fn log_metric(&self, metric: &mut Metric) -> Result<(), Error>;
 
     fn find_metrics(&self, habit_id: String) -> Option<Vec<Metric>>;
 }
@@ -97,7 +98,10 @@ impl UserRepository for MongoDB {
 }
 
 impl HabitRepository for MongoDB {
-    fn add_habit(&self, habit: &Habit) -> Result<(), Error> {
+    fn add_habit(&self, habit: &mut Habit) -> Result<(), Error> {
+        if habit.id.is_none() {
+            habit.id = Some(Uuid::new_v4().to_string());
+        }
         self.habits.insert_one(habit, None).ok().ok_or(WriteErr)?;
         Ok(())
     }
@@ -132,7 +136,10 @@ impl HabitRepository for MongoDB {
 }
 
 impl MetricRespository for MongoDB {
-    fn log_metric(&self, metric: &Metric) -> Result<(), Error> {
+    fn log_metric(&self, metric: &mut Metric) -> Result<(), Error> {
+        if metric.id.is_none() {
+            metric.id = Some(Uuid::new_v4().to_string());
+        }
         self.metrics.insert_one(metric, None).ok().ok_or(WriteErr)?;
         Ok(())
     }

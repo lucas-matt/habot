@@ -7,5 +7,10 @@
 
 # SendActivity_DidNotUnderstand_text()
 - Sorry, I didn't get that.
-# SendActivity_859266()
-- Hi there, I'm your friend habit coach
+# SendActivity_e4mQjI()
+[Activity
+    Text = ${SendActivity_e4mQjI_text()}
+]
+
+# SendActivity_e4mQjI_text()
+- Hi ${user.name} your id is ${user.id}

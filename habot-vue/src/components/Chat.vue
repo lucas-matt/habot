@@ -51,20 +51,47 @@ export default {
     // wait for script to load before creating webchat
     webchatScript.addEventListener('load', () => {
 
+      let bots = [
+        '/images/johnny_one.jpg',
+        '/images/johnny_two.jpg',
+        '/images/johnny_three.jpg',
+        '/images/johnny_four.jpg',
+      ]
+
       // Set style options.
       let userAvatarInitials = initials(this.account);
-      console.log(userAvatarInitials);
+      let firstName = this.account.name.split(" ")[0];
+
+      // https://github.com/microsoft/BotFramework-WebChat/blob/main/packages/api/src/defaultStyleOptions.ts
+      // https://habotiv.azurewebsites.net/api/messages
       const styleOptions = {
         botAvatarInitials: 'HB',
-        botAvatarImage: '/images/bot.gif',
+        botAvatarImage: bots[Math.floor(Math.random()*bots.length)],
+        avatarSize:60,
+        transitionDuration: "1s",
         userAvatarInitials: userAvatarInitials
       };
+
+      const store = window.WebChat.createStore({}, ({ dispatch }) => next => action => {
+        if (action.type === 'DIRECT_LINE/CONNECT_FULFILLED') {
+          dispatch({
+            type: 'WEB_CHAT/SEND_EVENT',
+            payload: {
+              name: 'loginevent',
+              value: { name: firstName, id: this.account.localAccountId}
+            }
+          });
+        }
+
+        return next(action);
+      });
 
       window.WebChat.renderWebChat(
           {
             directLine: window.WebChat.createDirectLine({
-              token: '4Z2hRMp54Yc.Ml__NKAb2nhLldy2bePqOaspkwhw__bh_SGtlk1WvY8'
+              token: '4Z2hRMp54Yc.Ml__NKAb2nhLldy2bePqOaspkwhw__bh_SGtlk1WvY8',
             }),
+            store,
             userID: 'YOUR_USER_ID',
             username: 'Web Chat User',
             styleOptions

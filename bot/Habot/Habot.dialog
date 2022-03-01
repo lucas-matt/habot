@@ -9,74 +9,6 @@
   "defaultResultProperty": "dialog.result",
   "triggers": [
     {
-      "$kind": "Microsoft.OnConversationUpdateActivity",
-      "$designer": {
-        "id": "376720",
-        "comment": "This trigger runs when a conversation update activity is sent to the bot. This indicates a user or bot being added or removed from a conversation."
-      },
-      "actions": [
-        {
-          "$kind": "Microsoft.Foreach",
-          "$designer": {
-            "id": "518944",
-            "name": "Loop: for each item",
-            "comment": "For each member added to the conversation."
-          },
-          "itemsProperty": "turn.Activity.membersAdded",
-          "actions": [
-            {
-              "$kind": "Microsoft.IfCondition",
-              "$designer": {
-                "id": "641773",
-                "name": "Branch: if/else",
-                "comment": "Checks that that member added ID does not match the bot ID. This prevents the greeting message from being sent when the bot is added to a conversation."
-              },
-              "condition": "=string(dialog.foreach.value.id) != string(turn.Activity.Recipient.id)",
-              "actions": [
-                {
-                  "$kind": "Microsoft.SendActivity",
-                  "$designer": {
-                    "id": "859266",
-                    "name": "Send a response"
-                  },
-                  "activity": "${SendActivity_859266()}"
-                }
-              ]
-            },
-            {
-              "$kind": "Microsoft.IfCondition",
-              "$designer": {
-                "id": "A9sJWJ"
-              },
-              "condition": "=count($user.habits) == 0",
-              "actions": [
-                {
-                  "$kind": "Microsoft.BeginDialog",
-                  "$designer": {
-                    "id": "9jOl6t"
-                  },
-                  "activityProcessed": true,
-                  "dialog": "NoHabit"
-                }
-              ],
-              "elseActions": [
-                {
-                  "$kind": "Microsoft.BeginDialog",
-                  "$designer": {
-                    "id": "wRrrtw"
-                  },
-                  "activityProcessed": true,
-                  "dialog": "ReviewHabit"
-                }
-              ]
-            }
-          ],
-          "value": "dialog.foreach.value",
-          "index": "dialog.foreach.index"
-        }
-      ]
-    },
-    {
       "$kind": "Microsoft.OnUnknownIntent",
       "$designer": {
         "id": "mb2n1u",
@@ -110,6 +42,40 @@
           "dialog": "NewHabit"
         }
       ]
+    },
+    {
+      "$kind": "Microsoft.OnEventActivity",
+      "$designer": {
+        "id": "HaMq7b",
+        "name": "Event received (Event activity)"
+      },
+      "actions": [
+        {
+          "$kind": "Microsoft.SetProperty",
+          "$designer": {
+            "id": "vInL0A"
+          },
+          "property": "user.name",
+          "value": "${turn.activity.value.name}"
+        },
+        {
+          "$kind": "Microsoft.SetProperty",
+          "$designer": {
+            "id": "QTo254"
+          },
+          "property": "user.id",
+          "value": "${turn.activity.value.id}"
+        },
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "e4mQjI"
+          },
+          "activity": "${SendActivity_e4mQjI()}"
+        }
+      ],
+      "condition": "=turn.activity.name == \"loginevent\"",
+      "priority": 0
     }
   ],
   "generator": "Habot.lg",

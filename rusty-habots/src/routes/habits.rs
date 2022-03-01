@@ -5,15 +5,16 @@ use rocket::http::{RawStr, Status};
 use rocket::State;
 use rocket_contrib::json::Json;
 
-#[post("/users/<_user_id>/habits", data = "<json>")]
+#[post("/users/<user_id>/habits", data = "<json>")]
 pub fn add_habit(
     repo: State<Box<dyn UberRepository + Sync + Send>>,
-    _user_id: &RawStr,
+    user_id: &RawStr,
     json: Json<Habit>,
 ) -> Result<Json<Habit>, Status> {
     info!("Submitted habit {:?}", json);
-    let habit = json.into_inner();
-    let result = repo.add_habit(&habit);
+    let mut habit = json.into_inner();
+    habit.user = user_id.to_string();
+    let result = repo.add_habit(&mut habit);
     if let Err(err) = result {
         warn!("Encountered error {:?}", err);
         return Err(Status::InternalServerError);
