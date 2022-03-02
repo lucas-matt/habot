@@ -1,5 +1,6 @@
 use log::warn;
 use mongodb::bson::doc;
+use mongodb::options::ReplaceOptions;
 use mongodb::sync::Client;
 use mongodb::sync::Collection;
 use uuid::Uuid;
@@ -92,7 +93,10 @@ impl UserRepository for MongoDB {
     }
 
     fn update_user(&self, user: &User) -> Result<(), Error> {
-        self.users.insert_one(user, None).ok().ok_or(WriteErr)?;
+        let id = user.id.as_ref().unwrap();
+        let mut options = ReplaceOptions::default();
+        options.upsert = Some(true);
+        self.users.replace_one(doc!{ "_id": id}, user, options).ok().ok_or(WriteErr)?;
         Ok(())
     }
 }
@@ -102,7 +106,8 @@ impl HabitRepository for MongoDB {
         if habit.id.is_none() {
             habit.id = Some(Uuid::new_v4().to_string());
         }
-        self.habits.insert_one(habit, None).ok().ok_or(WriteErr)?;
+        self.habits.replace_one(doc! {"_id": habit.id.as_ref().unwrap()}, habit, None)
+            .ok().ok_or(WriteErr)?;
         Ok(())
     }
 

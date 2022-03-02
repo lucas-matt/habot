@@ -9,41 +9,6 @@
   "defaultResultProperty": "dialog.result",
   "triggers": [
     {
-      "$kind": "Microsoft.OnUnknownIntent",
-      "$designer": {
-        "id": "mb2n1u",
-        "comment": "This trigger fires when an incoming activity is not handled by any other trigger."
-      },
-      "actions": [
-        {
-          "$kind": "Microsoft.SendActivity",
-          "$designer": {
-            "id": "kMjqz1",
-            "comment": "It is recommended to show a message to the user when the bot does not know how to handle an incoming activity and provide follow up options or a help message."
-          },
-          "activity": "${SendActivity_DidNotUnderstand()}"
-        }
-      ]
-    },
-    {
-      "$kind": "Microsoft.OnIntent",
-      "$designer": {
-        "id": "gFEF5R",
-        "name": "NewHabitTrigger"
-      },
-      "intent": "NewHabitTrigger",
-      "actions": [
-        {
-          "$kind": "Microsoft.BeginDialog",
-          "$designer": {
-            "id": "ZnHe6C"
-          },
-          "activityProcessed": true,
-          "dialog": "NewHabit"
-        }
-      ]
-    },
-    {
       "$kind": "Microsoft.OnEventActivity",
       "$designer": {
         "id": "HaMq7b",
@@ -67,11 +32,64 @@
           "value": "${turn.activity.value.id}"
         },
         {
+          "$kind": "Microsoft.HttpRequest",
+          "$designer": {
+            "id": "HSb5ru"
+          },
+          "resultProperty": "turn.results.user",
+          "method": "GET",
+          "url": "https://rusty-habots.azurewebsites.net/api/users/${user.id}",
+          "contentType": "application/json",
+          "responseType": "json"
+        },
+        {
           "$kind": "Microsoft.SendActivity",
           "$designer": {
             "id": "e4mQjI"
           },
           "activity": "${SendActivity_e4mQjI()}"
+        },
+        {
+          "$kind": "Microsoft.IfCondition",
+          "$designer": {
+            "id": "5Yn4iR"
+          },
+          "condition": "=turn.results.user.statusCode == 200",
+          "actions": [
+            {
+              "$kind": "Microsoft.SendActivity",
+              "$designer": {
+                "id": "x26yWT"
+              },
+              "activity": "${SendActivity_x26yWT()}"
+            }
+          ],
+          "elseActions": [
+            {
+              "$kind": "Microsoft.HttpRequest",
+              "$designer": {
+                "id": "MxuqLJ"
+              },
+              "resultProperty": "turn.results",
+              "method": "PUT",
+              "url": "https://rusty-habots.azurewebsites.net/api/users/${user.id}",
+              "body": {
+                "name": "${user.name}"
+              },
+              "headers": {
+                "Content-Type": "application/json"
+              },
+              "contentType": "application/json",
+              "responseType": "json"
+            },
+            {
+              "$kind": "Microsoft.SendActivity",
+              "$designer": {
+                "id": "Czh0ym"
+              },
+              "activity": "${SendActivity_Czh0ym()}"
+            }
+          ]
         }
       ],
       "condition": "=turn.activity.name == \"loginevent\"",
