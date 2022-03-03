@@ -106,7 +106,9 @@ impl HabitRepository for MongoDB {
         if habit.id.is_none() {
             habit.id = Some(Uuid::new_v4().to_string());
         }
-        self.habits.replace_one(doc! {"_id": habit.id.as_ref().unwrap()}, habit, None)
+        let mut options = ReplaceOptions::default();
+        options.upsert = Some(true);
+        self.habits.replace_one(doc! {"_id": habit.id.as_ref().unwrap()}, habit, options)
             .ok().ok_or(WriteErr)?;
         Ok(())
     }
