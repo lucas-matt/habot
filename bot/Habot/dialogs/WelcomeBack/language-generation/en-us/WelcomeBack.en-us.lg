@@ -1,0 +1,19 @@
+[import](common.lg)
+
+# SendActivity_5CMKT3()
+[Activity
+    Text = ${SendActivity_5CMKT3_text()}
+]
+
+# SendActivity_5CMKT3_text()
+- Nice to see you again ${user.name}
+- ```Hi ${user.name} how're things?
+```
+- Welcome back ${user.name}, hope that you're well!
+# ChoiceInput_Prompt_AIed0v()
+[Activity
+    Text = ${ChoiceInput_Prompt_AIed0v_text()}
+]
+
+# ChoiceInput_Prompt_AIed0v_text()
+- How've you been getting on with your habit to ${user.habit.habit}?

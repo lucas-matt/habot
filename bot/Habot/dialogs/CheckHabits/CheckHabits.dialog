@@ -1,0 +1,31 @@
+{
+  "$kind": "Microsoft.AdaptiveDialog",
+  "$designer": {
+    "id": "3KNUlx",
+    "name": "CheckHabits",
+    "comment": ""
+  },
+  "autoEndDialog": true,
+  "defaultResultProperty": "dialog.result",
+  "triggers": [
+    {
+      "$kind": "Microsoft.OnBeginDialog",
+      "$designer": {
+        "name": "BeginDialog",
+        "description": "",
+        "id": "MdwaXA"
+      },
+      "actions": [
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "obwoG5"
+          }
+        }
+      ]
+    }
+  ],
+  "generator": "CheckHabits.lg",
+  "recognizer": "CheckHabits.lu.qna",
+  "id": "CheckHabits"
+}

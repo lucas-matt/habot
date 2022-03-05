@@ -1,0 +1,40 @@
+{
+  "$kind": "Microsoft.AdaptiveDialog",
+  "$designer": {
+    "id": "L9Vgon",
+    "name": "WelcomeUser",
+    "comment": ""
+  },
+  "autoEndDialog": true,
+  "defaultResultProperty": "dialog.result",
+  "triggers": [
+    {
+      "$kind": "Microsoft.OnBeginDialog",
+      "$designer": {
+        "name": "BeginDialog",
+        "description": "",
+        "id": "HVZKmz"
+      },
+      "actions": [
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "ZLJDdS"
+          },
+          "activity": "${SendActivity_ZLJDdS()}"
+        },
+        {
+          "$kind": "Microsoft.BeginDialog",
+          "$designer": {
+            "id": "ahCnLZ"
+          },
+          "activityProcessed": true,
+          "dialog": "NewHabit"
+        }
+      ]
+    }
+  ],
+  "generator": "WelcomeUser.lg",
+  "recognizer": "WelcomeUser.lu.qna",
+  "id": "WelcomeUser"
+}

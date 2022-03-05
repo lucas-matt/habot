@@ -1,0 +1,107 @@
+{
+  "$kind": "Microsoft.AdaptiveDialog",
+  "$designer": {
+    "id": "jqSwFh",
+    "name": "WelcomeBack",
+    "comment": ""
+  },
+  "autoEndDialog": true,
+  "defaultResultProperty": "dialog.result",
+  "triggers": [
+    {
+      "$kind": "Microsoft.OnBeginDialog",
+      "$designer": {
+        "name": "BeginDialog",
+        "description": "",
+        "id": "HmOk2P"
+      },
+      "actions": [
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "5CMKT3"
+          },
+          "activity": "${SendActivity_5CMKT3()}"
+        },
+        {
+          "$kind": "Microsoft.HttpRequest",
+          "$designer": {
+            "id": "Vk8U9k"
+          },
+          "resultProperty": "turn.results",
+          "method": "GET",
+          "url": "https://rusty-habots.azurewebsites.net/api/users/${user.id}/habits",
+          "responseType": "json",
+          "contentType": "application/json"
+        },
+        {
+          "$kind": "Microsoft.IfCondition",
+          "$designer": {
+            "id": "rCR2c3"
+          },
+          "condition": "=count(turn.results.content) > 0",
+          "actions": [
+            {
+              "$kind": "Microsoft.SetProperties",
+              "$designer": {
+                "id": "vifVpx"
+              },
+              "assignments": [
+                {
+                  "property": "user.habit.habit",
+                  "value": "=turn.results.content[0].name"
+                }
+              ]
+            },
+            {
+              "$kind": "Microsoft.ChoiceInput",
+              "$designer": {
+                "id": "AIed0v"
+              },
+              "defaultLocale": "en-us",
+              "disabled": false,
+              "maxTurnCount": 3,
+              "alwaysPrompt": false,
+              "allowInterruptions": false,
+              "prompt": "${ChoiceInput_Prompt_AIed0v()}",
+              "unrecognizedPrompt": "",
+              "invalidPrompt": "",
+              "defaultValueResponse": "",
+              "choiceOptions": {
+                "includeNumbers": true,
+                "inlineSeparator": ", ",
+                "inlineOr": " or ",
+                "inlineOrMore": ", or "
+              },
+              "property": "dialog.feeling",
+              "outputFormat": "value",
+              "style": "list",
+              "choices": [
+                "Great",
+                "Good",
+                "Ok",
+                "No so good"
+              ]
+            }
+          ]
+        },
+        {
+          "$kind": "Microsoft.CancelAllDialogs",
+          "$designer": {
+            "id": "PUTdhu"
+          },
+          "activityProcessed": true
+        },
+        {
+          "$kind": "Microsoft.EndDialog",
+          "$designer": {
+            "id": "oGhgoR"
+          }
+        }
+      ]
+    }
+  ],
+  "generator": "WelcomeBack.lg",
+  "recognizer": "WelcomeBack.lu.qna",
+  "id": "WelcomeBack"
+}

@@ -1,0 +1,8 @@
+{
+  "$kind": "Microsoft.MultiLanguageRecognizer",
+  "id": "LUIS_WelcomeBack",
+  "recognizers": {
+    "en-us": "WelcomeBack.en-us.lu",
+    "": "WelcomeBack.en-us.lu"
+  }
+}

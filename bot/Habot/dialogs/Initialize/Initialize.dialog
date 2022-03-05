@@ -1,0 +1,88 @@
+{
+  "$kind": "Microsoft.AdaptiveDialog",
+  "$designer": {
+    "id": "qnXYET",
+    "name": "Initialize",
+    "comment": ""
+  },
+  "autoEndDialog": true,
+  "defaultResultProperty": "dialog.result",
+  "triggers": [
+    {
+      "$kind": "Microsoft.OnBeginDialog",
+      "$designer": {
+        "name": "BeginDialog",
+        "description": "",
+        "id": "zWOiH1"
+      },
+      "actions": [
+        {
+          "$kind": "Microsoft.HttpRequest",
+          "$designer": {
+            "id": "HSb5ru"
+          },
+          "resultProperty": "turn.results.user",
+          "method": "GET",
+          "url": "https://rusty-habots.azurewebsites.net/api/users/${user.id}",
+          "contentType": "application/json",
+          "responseType": "json"
+        },
+        {
+          "$kind": "Microsoft.IfCondition",
+          "$designer": {
+            "id": "5Yn4iR"
+          },
+          "condition": "=turn.results.user.statusCode == 200",
+          "actions": [
+            {
+              "$kind": "Microsoft.BeginDialog",
+              "$designer": {
+                "id": "WeOL65"
+              },
+              "activityProcessed": true,
+              "dialog": "WelcomeBack"
+            }
+          ],
+          "elseActions": [
+            {
+              "$kind": "Microsoft.HttpRequest",
+              "$designer": {
+                "id": "MxuqLJ"
+              },
+              "resultProperty": "turn.results",
+              "method": "PUT",
+              "url": "https://rusty-habots.azurewebsites.net/api/users/${user.id}",
+              "body": {
+                "name": "${user.name}"
+              },
+              "headers": {
+                "Content-Type": "application/json"
+              },
+              "contentType": "application/json",
+              "responseType": "json"
+            },
+            {
+              "$kind": "Microsoft.BeginDialog",
+              "$designer": {
+                "id": "PCHc4K"
+              },
+              "activityProcessed": true,
+              "dialog": "WelcomeUser"
+            }
+          ]
+        },
+        {
+          "$kind": "Microsoft.BeginDialog",
+          "$designer": {
+            "id": "3ww1OP"
+          },
+          "activityProcessed": true,
+          "dialog": "CheckHabits"
+        }
+      ]
+    }
+  ],
+  "generator": "Initialize.lg",
+  "recognizer": "Initialize.lu.qna",
+  "id": "Initialize"
+}

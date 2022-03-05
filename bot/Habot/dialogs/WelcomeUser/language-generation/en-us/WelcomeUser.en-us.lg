@@ -1,0 +1,13 @@
+[import](common.lg)
+
+# SendActivity_ZLJDdS()
+[Activity
+    Text = ${SendActivity_ZLJDdS_text()}
+]
+
+# SendActivity_ZLJDdS_text()
+- ```Welcome to **Habot**. I'm your friendly habit coach.
+
+Together we can start a new habit or break an old one and I'll help you along the way.
+
+I'll also give you advice on how to stick with your habits and keep up your motiviation.```
