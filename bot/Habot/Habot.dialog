@@ -9,6 +9,39 @@
   "defaultResultProperty": "dialog.result",
   "triggers": [
     {
+      "$kind": "Microsoft.OnConversationUpdateActivity",
+      "$designer": {
+        "id": "QoA576",
+        "name": "Greeting (ConversationUpdate activity)"
+      },
+      "actions": [
+        {
+          "$kind": "Microsoft.SetProperties",
+          "$designer": {
+            "id": "YxAZdE"
+          },
+          "assignments": [
+            {
+              "property": "user.name",
+              "value": "TestUser"
+            },
+            {
+              "property": "user.id",
+              "value": "test"
+            }
+          ]
+        },
+        {
+          "$kind": "Microsoft.BeginDialog",
+          "$designer": {
+            "id": "GyIqMJ"
+          },
+          "activityProcessed": true,
+          "dialog": "Initialize"
+        }
+      ]
+    },
+    {
       "$kind": "Microsoft.OnEventActivity",
       "$designer": {
         "id": "HaMq7b",

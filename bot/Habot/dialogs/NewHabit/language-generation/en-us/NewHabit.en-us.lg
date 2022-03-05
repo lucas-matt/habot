@@ -6,25 +6,21 @@
 ]
 
 # TextInput_Prompt_pWNRkI_text()
-- What kind of habit are you looking to start? For example, "exercise more"
-- What would you like to do? For example, "eat heathier"
-- How would you like to change? For example, "read more books"
-- ```
-```
+- So what shall we aim for?
 # ConfirmInput_Prompt_RtagWI()
 [Activity
     Text = ${ConfirmInput_Prompt_RtagWI_text()}
 ]
 
 # ConfirmInput_Prompt_RtagWI_text()
-- So you'd like to start ${dialog.habit}?
+- Great, so you want  to **${user.habit.action} ${user.habit.habit}?**
 # SendActivity_GKuI3T()
 [Activity
     Text = ${SendActivity_GKuI3T_text()}
 ]
 
 # SendActivity_GKuI3T_text()
-- Great, I'll make a note of that
+- Thanks, I'll make a note of that
 # SendActivity_3z2XJp()
 [Activity
     Text = ${SendActivity_3z2XJp_text()}
@@ -32,3 +28,50 @@
 
 # SendActivity_3z2XJp_text()
 - Oh sorry, I misunderstood ${dialog.habit}, let me try that again
+# SendActivity_PTsXq5()
+[Activity
+    Text = ${SendActivity_PTsXq5_text()}
+]
+
+# SendActivity_PTsXq5_text()
+- ```What kind of habit are you looking to start? Here are some suggestions:
+
+* I'd like to exercise more
+* I want to eat healthier
+* I would like to read more books```
+# SendActivity_MP18Vu()
+[Activity
+    Text = ${SendActivity_MP18Vu_text()}
+]
+
+# SendActivity_MP18Vu_text()
+- ```Or maybe you're looking to stop a habit, for example
+
+* I want to stop watching so much TV
+* I'd like to avoid unhealthy foods```
+# SendActivity_0mwk6V()
+[Activity
+    Text = ${SendActivity_0mwk6V_text()}
+]
+
+# SendActivity_0mwk6V_text()
+- Let's look at a few tips to help you along the way.
+# SendActivity_xBrTAZ()
+[Activity
+    Text = ${SendActivity_xBrTAZ_text()}
+]
+
+# SendActivity_xBrTAZ_text()
+- Sorry, I wasn't able to save that, let's try again.
+# SendActivity_WbrRPf()
+[Activity
+    Text = ${SendActivity_WbrRPf_text()}
+]
+
+# SendActivity_WbrRPf_text()
+- ```# You Started a New Habit!!
+
+![](https://media4.giphy.com/media/cklPOHnHepdwBLRnQp/200.webp?cid=ecf05e47yib7ys323x8i7hb6vw2zc1rkrbgq1dbj86xqrmiz&rid=200.webp&ct=g)```
+- ```# You Started a New Habit!!
+
+![](https://media3.giphy.com/media/K3Sbp8fOgKye4/200.webp?cid=ecf05e47yib7ys323x8i7hb6vw2zc1rkrbgq1dbj86xqrmiz&rid=200.webp&ct=g)```

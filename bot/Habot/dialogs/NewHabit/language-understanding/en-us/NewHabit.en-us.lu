@@ -1,6 +1,63 @@
 
 # TextInput_Response_pWNRkI
-- exercise
+- I want to {Action} {HabitTypes}
+- I'd like to {Action} {HabitTypes}
+- I hope to {Action} {HabitTypes}
+
+@ list Action = 
+	- start:
+		- begin
+		- establish
+		- commence
+		- set up
+		- kick off
+	- stop
+	    - end
+		- cease
+		- finish
+		- put a stop to
+		- halt
+		- close
+
+@ list HabitTypes =
+	- exercising more:
+		- running
+		- fitness
+		- going to the gym
+		- swimming
+		- hiking
+		- rowing
+		- spending time outdoors
+	- eating healthily :
+		- eat more fruit
+		- eat more vegetables
+		- eat better
+	- eating unhealthily
+	    - eating junk food
+-		- eating junk
+		- eating late at night
+		- eating too much
+	- smoking :
+		- cigarettes
+		- tobacco
+		- nicotine
+		- smokeing
+		- smoking cigarettes
+		- smoking tobacco
+		- smoking nicotine
+		- smoking smokeing
+	- drinking alcohol :
+		- drinking 
+		- boozing
+	- getting better sleep :
+		- going to bed earlier 
+	- waking up earlier
+		- rising earlier
+	- reading more :
+		- reading more books
+		- studying more
+		- learning
+		- studying
 
 
 # ConfirmInput_Response_RtagWI

@@ -17,6 +17,20 @@
       },
       "actions": [
         {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "PTsXq5"
+          },
+          "activity": "${SendActivity_PTsXq5()}"
+        },
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "MP18Vu"
+          },
+          "activity": "${SendActivity_MP18Vu()}"
+        },
+        {
           "$kind": "Microsoft.TextInput",
           "$designer": {
             "id": "pWNRkI"
@@ -28,7 +42,17 @@
           "prompt": "${TextInput_Prompt_pWNRkI()}",
           "unrecognizedPrompt": "",
           "invalidPrompt": "",
-          "property": "dialog.habit"
+          "property": "user.habit.habit",
+          "value": "=turn.recognized.entities.HabitTypes[0][0]",
+          "validations": []
+        },
+        {
+          "$kind": "Microsoft.SetProperty",
+          "$designer": {
+            "id": "n6B3Zn"
+          },
+          "property": "user.habit.action",
+          "value": "=turn.recognized.entities.Action[0][0]"
         },
         {
           "$kind": "Microsoft.ConfirmInput",
@@ -46,9 +70,11 @@
           "choiceOptions": {
             "includeNumbers": true,
             "inlineOrMore": ", or ",
-            "inlineOr": " or "
+            "inlineOr": " or ",
+            "inlineSeparator": ", "
           },
-          "property": "dialog.habitConfirm"
+          "property": "dialog.habitConfirm",
+          "validations": []
         },
         {
           "$kind": "Microsoft.IfCondition",
@@ -62,6 +88,72 @@
                 "id": "GKuI3T"
               },
               "activity": "${SendActivity_GKuI3T()}"
+            },
+            {
+              "$kind": "Microsoft.HttpRequest",
+              "$designer": {
+                "id": "53rDjS"
+              },
+              "resultProperty": "turn.results",
+              "method": "POST",
+              "url": "https://rusty-habots.azurewebsites.net/api/users/${user.id}/habits",
+              "body": {
+                "user": "${user.id}",
+                "name": "${user.habit.action} ${user.habit.habit}",
+                "type": "Health"
+              },
+              "headers": {
+                "Content-Type": "application/json"
+              },
+              "responseType": "json",
+              "contentType": "application/json"
+            },
+            {
+              "$kind": "Microsoft.IfCondition",
+              "$designer": {
+                "id": "ArIQ2j"
+              },
+              "condition": "=turn.results.statusCode == 200",
+              "actions": [
+                {
+                  "$kind": "Microsoft.SendActivity",
+                  "$designer": {
+                    "id": "WbrRPf"
+                  },
+                  "activity": "${SendActivity_WbrRPf()}"
+                },
+                {
+                  "$kind": "Microsoft.SendActivity",
+                  "$designer": {
+                    "id": "0mwk6V"
+                  },
+                  "activity": "${SendActivity_0mwk6V()}"
+                },
+                {
+                  "$kind": "Microsoft.BeginDialog",
+                  "$designer": {
+                    "id": "mTqZpu"
+                  },
+                  "activityProcessed": true,
+                  "dialog": "StartingTips"
+                }
+              ],
+              "elseActions": [
+                {
+                  "$kind": "Microsoft.SendActivity",
+                  "$designer": {
+                    "id": "xBrTAZ"
+                  },
+                  "activity": "${SendActivity_xBrTAZ()}"
+                },
+                {
+                  "$kind": "Microsoft.RepeatDialog",
+                  "$designer": {
+                    "id": "FHrSD7"
+                  },
+                  "activityProcessed": true
+                }
+              ]
             }
           ],
           "elseActions": [
