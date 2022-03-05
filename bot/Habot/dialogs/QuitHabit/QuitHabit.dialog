@@ -1,0 +1,94 @@
+{
+  "$kind": "Microsoft.AdaptiveDialog",
+  "$designer": {
+    "id": "AufJbY",
+    "name": "QuitHabit",
+    "comment": ""
+  },
+  "autoEndDialog": true,
+  "defaultResultProperty": "dialog.result",
+  "triggers": [
+    {
+      "$kind": "Microsoft.OnBeginDialog",
+      "$designer": {
+        "id": "6x0kVI",
+        "name": "Dialog started (Begin dialog event)"
+      },
+      "actions": [
+        {
+          "$kind": "Microsoft.ConfirmInput",
+          "$designer": {
+            "id": "TwGUgJ"
+          },
+          "defaultLocale": "en-us",
+          "disabled": false,
+          "maxTurnCount": 3,
+          "alwaysPrompt": false,
+          "allowInterruptions": false,
+          "prompt": "${ConfirmInput_Prompt_TwGUgJ()}",
+          "unrecognizedPrompt": "",
+          "invalidPrompt": "",
+          "defaultValueResponse": "",
+          "choiceOptions": {
+            "includeNumbers": true,
+            "inlineOrMore": ", or ",
+            "inlineOr": " or ",
+            "inlineSeparator": ", "
+          },
+          "property": "dialog.confirm"
+        },
+        {
+          "$kind": "Microsoft.IfCondition",
+          "$designer": {
+            "id": "Y9U9Nc"
+          },
+          "condition": "=dialog.confirm == true",
+          "elseActions": [
+            {
+              "$kind": "Microsoft.EndDialog",
+              "$designer": {
+                "id": "8UyoNd"
+              }
+            }
+          ],
+          "actions": [
+            {
+              "$kind": "Microsoft.HttpRequest",
+              "$designer": {
+                "id": "qEZLnl"
+              },
+              "resultProperty": "turn.results",
+              "method": "DELETE",
+              "url": "https://rusty-habots.azurewebsites.net/api/users/${user.id}/habits/${user.habit.id}"
+            },
+            {
+              "$kind": "Microsoft.SendActivity",
+              "$designer": {
+                "id": "FJXLws"
+              },
+              "activity": "${SendActivity_FJXLws()}"
+            },
+            {
+              "$kind": "Microsoft.CancelAllDialogs",
+              "$designer": {
+                "id": "YtnO7A"
+              },
+              "activityProcessed": true
+            },
+            {
+              "$kind": "Microsoft.BeginDialog",
+              "$designer": {
+                "id": "oxZnT1"
+              },
+              "activityProcessed": true,
+              "dialog": "Initialize"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "generator": "QuitHabit.lg",
+  "recognizer": "QuitHabit.lu.qna",
+  "id": "QuitHabit"
+}

@@ -1,1 +1,9 @@
 [import](common.lg)
+
+# SendActivity_UZbqLP()
+[Activity
+    Text = ${SendActivity_UZbqLP_text()}
+]
+
+# SendActivity_UZbqLP_text()
+- Looks like you don't currently have a habit. Let's set one up.

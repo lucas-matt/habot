@@ -15,7 +15,23 @@
         "description": "",
         "id": "yLqLJ2"
       },
-      "actions": []
+      "actions": [
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "UZbqLP"
+          },
+          "activity": "${SendActivity_UZbqLP()}"
+        },
+        {
+          "$kind": "Microsoft.BeginDialog",
+          "$designer": {
+            "id": "jkEaCc"
+          },
+          "activityProcessed": true,
+          "dialog": "NewHabit"
+        }
+      ]
     }
   ],
   "generator": "NoHabit.lg",

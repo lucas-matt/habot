@@ -12,6 +12,12 @@ pub struct Habit {
     #[serde(rename = "name")]
     pub name: String,
 
+    #[serde(rename = "action")]
+    pub action: String,
+
+    #[serde(rename = "action")]
+    pub habit: String,
+
     #[serde(rename = "type")]
     pub habit_type: String,
 
@@ -19,6 +25,7 @@ pub struct Habit {
 
 #[derive(Serialize, Deserialize, Debug)]
 pub struct User {
+
     #[serde(rename = "_id", skip_serializing_if = "Option::is_none", alias="id")]
     pub id: Option<String>,
 

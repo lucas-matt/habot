@@ -17,20 +17,6 @@
       },
       "actions": [
         {
-          "$kind": "Microsoft.SendActivity",
-          "$designer": {
-            "id": "PTsXq5"
-          },
-          "activity": "${SendActivity_PTsXq5()}"
-        },
-        {
-          "$kind": "Microsoft.SendActivity",
-          "$designer": {
-            "id": "MP18Vu"
-          },
-          "activity": "${SendActivity_MP18Vu()}"
-        },
-        {
           "$kind": "Microsoft.TextInput",
           "$designer": {
             "id": "pWNRkI"

@@ -6,7 +6,15 @@
 ]
 
 # TextInput_Prompt_pWNRkI_text()
-- So what shall we aim for?
+- ```What kind of habit are you looking to start? 
+
+Here are some suggestions:
+
+   *I want to start exercising more*
+
+   *I want to stop eating junk food*
+
+   *I want to start reading more books*```
 # ConfirmInput_Prompt_RtagWI()
 [Activity
     Text = ${ConfirmInput_Prompt_RtagWI_text()}
@@ -28,27 +36,6 @@
 
 # SendActivity_3z2XJp_text()
 - Oh sorry, I misunderstood ${dialog.habit}, let me try that again
-# SendActivity_PTsXq5()
-[Activity
-    Text = ${SendActivity_PTsXq5_text()}
-]
-
-# SendActivity_PTsXq5_text()
-- ```What kind of habit are you looking to start? Here are some suggestions:
-
-* I'd like to exercise more
-* I want to eat healthier
-* I would like to read more books```
-# SendActivity_MP18Vu()
-[Activity
-    Text = ${SendActivity_MP18Vu_text()}
-]
-
-# SendActivity_MP18Vu_text()
-- ```Or maybe you're looking to stop a habit, for example
-
-* I want to stop watching so much TV
-* I'd like to avoid unhealthy foods```
 # SendActivity_0mwk6V()
 [Activity
     Text = ${SendActivity_0mwk6V_text()}

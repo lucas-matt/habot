@@ -1,0 +1,23 @@
+[import](common.lg)
+
+# ConfirmInput_Prompt_TwGUgJ()
+[Activity
+    Text = ${ConfirmInput_Prompt_TwGUgJ_text()}
+]
+
+# ConfirmInput_Prompt_TwGUgJ_text()
+- ```Are you sure you want to quit?
+
+https://rusty\-habots.azurewebsites.net/api/users/${user.id}/habits/${user.habit.id}```
+# SendActivity_FJXLws()
+[Activity
+    Text = ${SendActivity_FJXLws_text()}
+]
+
+# SendActivity_FJXLws_text()
+- ```Ok done, 
+
+![](https://media1.giphy.com/media/7tnQzLQxE2AHcEFund/giphy.webp?cid=ecf05e47bwey2ykdwxody5rhgorjl7typ642d9mafrzcc5yf&rid=giphy.webp&ct=g)```
+- ```All done
+
+![](https://media2.giphy.com/media/ynpRqBi1rBvGYSinoe/giphy.webp?cid=ecf05e47bwey2ykdwxody5rhgorjl7typ642d9mafrzcc5yf&rid=giphy.webp&ct=g)```

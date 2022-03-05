@@ -69,7 +69,10 @@ export default {
         botAvatarImage: bots[Math.floor(Math.random()*bots.length)],
         avatarSize:60,
         transitionDuration: "1s",
-        userAvatarInitials: userAvatarInitials
+        userAvatarInitials: userAvatarInitials,
+        bubbleBorderRadius: 5,
+        bubbleFromUserBorderRadius: 5,
+        bubbleBackground: '#F8F8F8'
       };
 
       const store = window.WebChat.createStore({}, ({ dispatch }) => next => action => {
@@ -113,6 +116,10 @@ export default {
 
 #webchat {
   width: 85%;
+}
+
+#webchat {
+  text-align: left;
 }
 
 </style>

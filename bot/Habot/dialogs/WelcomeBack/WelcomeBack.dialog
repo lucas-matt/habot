@@ -50,6 +50,10 @@
                 {
                   "property": "user.habit.habit",
                   "value": "=turn.results.content[0].name"
+                },
+                {
+                  "property": "user.habit.id",
+                  "value": "=turn.results.content[0]._id"
                 }
               ]
             },
@@ -62,11 +66,10 @@
               "disabled": false,
               "maxTurnCount": 3,
               "alwaysPrompt": false,
-              "allowInterruptions": false,
+              "allowInterruptions": true,
               "prompt": "${ChoiceInput_Prompt_AIed0v()}",
               "unrecognizedPrompt": "",
               "invalidPrompt": "",
-              "defaultValueResponse": "",
               "choiceOptions": {
                 "includeNumbers": true,
                 "inlineSeparator": ", ",
@@ -81,7 +84,21 @@
                 "Good",
                 "Ok",
                 "No so good"
-              ]
+              ],
+              "recognizerOptions": {
+                "recognizeOrdinals": true,
+                "recognizeNumbers": true
+              }
+            }
+          ],
+          "elseActions": [
+            {
+              "$kind": "Microsoft.BeginDialog",
+              "$designer": {
+                "id": "55inxL"
+              },
+              "activityProcessed": true,
+              "dialog": "NoHabit"
             }
           ]
         },
@@ -97,6 +114,24 @@
           "$designer": {
             "id": "oGhgoR"
           }
+        }
+      ]
+    },
+    {
+      "$kind": "Microsoft.OnIntent",
+      "$designer": {
+        "id": "St2TU7",
+        "name": "Quit"
+      },
+      "intent": "Quit",
+      "actions": [
+        {
+          "$kind": "Microsoft.BeginDialog",
+          "$designer": {
+            "id": "9oaGRc"
+          },
+          "activityProcessed": true,
+          "dialog": "QuitHabit"
         }
       ]
     }
