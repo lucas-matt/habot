@@ -1,11 +1,8 @@
 <template>
   <div class="is-fullheight">
     <HeaderBar/>
-    <section class="container hero">
+    <section class="container hero has-shadow">
       <div class="hero-head has-text-white">
-        <p class="title has-text-white-ter">
-          Coach
-        </p>
       </div>
       <div class="hero-container has-background-white">
         <div class="hero-body is-vcentered">
@@ -13,6 +10,13 @@
         </div>
       </div>
     </section>
+    <footer class="foot has-background-grey-lighter">
+      <div class="content has-text-centered">
+        <p>
+
+        </p>
+      </div>
+    </footer>
   </div>
 </template>
 
@@ -50,8 +54,14 @@ export default {
 
 .hero-container {
   height: 75vh;
-  border-radius: 2em;
+  border-radius: 0.5em;
   padding: 1em;
+}
+
+.foot {
+  position: absolute;
+  bottom: 10px;
+  width: 100%;
 }
 
 </style>

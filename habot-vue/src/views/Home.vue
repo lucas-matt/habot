@@ -1,24 +1,24 @@
 <template>
-  <div class="content-container is-fullheight has-background-info">
-    <section class="hero is-info is-fullheight">
+  <div class="content-container is-fullheight has-background-light-blue">
+    <section class="hero is-fullheight">
       <div class="hero-body">
         <div class="container">
           <div class="columns is-centered">
             <div class="column is-5-tablet is-4-desktop is-3-widescreen">
               <form action="" class="box">
                 <div class="field">
-                  <h1 class="sub-title">Login to Habot</h1>
+                  <img src="/images/habot-logo.png" />
                 </div>
                 <div class="field m-3">
                   <form
                       v-on:submit.prevent
-                      class="buttons">
+                      class="buttons is-centered">
                     <button
                         v-if="!account"
                         @click="SignIn"
                         target="_blank"
                         rel="noopener noreferrer"
-                        class="button is-black m-3">
+                        class="button is-black m-3 is-centered">
                       <img class="logo" src="@/assets/microsoft.png"/>
                       <b>Sign-in with Microsoft</b>
                     </button>
@@ -97,6 +97,7 @@ export default {
             const myAccounts = this.$msalInstance.getAllAccounts();
             this.account = myAccounts[0];
             this.$emitter.emit('login', this.account);
+            this.$router.push(`/${this.account.localAccountId}/coach`)
           })
           .catch(error => {
             console.error(`error during authentication: ${error}`);
@@ -135,4 +136,9 @@ a {
 .signin {
 
 }
+
+.centre {
+  text-align: center;
+}
+
 </style>

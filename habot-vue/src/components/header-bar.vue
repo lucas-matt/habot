@@ -1,7 +1,7 @@
 <template>
   <header>
     <nav
-        class="navbar has-background-light is-light"
+        class="navbar has-shadow"
         role="navigation"
         aria-label="main navigation"
     >

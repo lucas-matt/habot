@@ -1,5 +1,5 @@
 <template>
-  <div class="content-container is-fullheight has-background-info">
+  <div class="content-container is-fullheight has-background-light-blue">
     <router-view />
   </div>
 </template>
@@ -35,10 +35,16 @@ body {
 
 html {
   height: 100vh;
+  width: 100%;
 }
 
 .content-container {
   height: 100vh;
+}
+
+.has-background-light-blue {
+  background: rgb(255,255,255);
+  background: linear-gradient(0deg, rgba(255,255,255,1) 5%, rgba(206,247,255,1) 100%);
 }
 
 </style>

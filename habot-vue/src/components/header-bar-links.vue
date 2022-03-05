@@ -1,13 +1,13 @@
 <template>
   <div class="navbar-menu m-1">
-    <div class="navbar-start">
-      <div class="navbar-item">
-        <router-link v-if="account" :to="'/' + accountId + '/coach'">Coach</router-link>
-      </div>
-      <div class="navbar-item">
-        <router-link v-if="account" :to="'/' + accountId + '/progress'">Progress</router-link>
-      </div>
-    </div>
+<!--    <div class="navbar-start">-->
+<!--      <div class="navbar-item">-->
+<!--        <router-link v-if="account" :to="'/' + accountId + '/coach'">Coach</router-link>-->
+<!--      </div>-->
+<!--      <div class="navbar-item">-->
+<!--        <router-link v-if="account" :to="'/' + accountId + '/progress'">Progress</router-link>-->
+<!--      </div>-->
+<!--    </div>-->
     <div class="navbar-end">
       <div class="navbar-item">
         <div class="navbar-item" v-if="account">
