@@ -1,1 +1,9 @@
 [import](common.lg)
+
+# SendActivity_PUkSHf()
+[Activity
+    Text = ${SendActivity_PUkSHf_text()}
+]
+
+# SendActivity_PUkSHf_text()
+- ![](https://quickchart.io/chart?c=%7B%22type%22%3A%22doughnut%22%2C%22data%22%3A%7B%22datasets%22%3A%5B%7B%22label%22%3A%22foo%22%2C%22data%22%3A%5B0%2C100%5D%7D%5D%7D%2C%22options%22%3A%7B%22rotation%22%3AMath.PI%2C%22circumference%22%3AMath.PI%2C%22cutoutPercentage%22%3A75%2C%22plugins%22%3A%7B%22datalabels%22%3A%7B%22display%22%3Afalse%7D%2C%22doughnutlabel%22%3A%7B%22labels%22%3A%5B%7B%22text%22%3A%22%5CnHabit%20Success%20Rate%22%2C%22color%22%3A%22%23aaa%22%2C%22font%22%3A%7B%22size%22%3A%2225%22%7D%7D%2C%7B%22text%22%3A%22%5Cn0%25%22%2C%22font%22%3A%7B%22size%22%3A%2240%22%7D%7D%5D%7D%7D%7D%7D)

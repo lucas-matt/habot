@@ -1,0 +1,17 @@
+[import](common.lg)
+
+# ConfirmInput_Prompt_a1VlQd()
+[Activity
+    Text = ${ConfirmInput_Prompt_a1VlQd_text()}
+]
+
+# ConfirmInput_Prompt_a1VlQd_text()
+- - Are you ready to check in with your habit to **${user.habit.habit}**?
+- - Shall we check in with your habit to **${user.habit.habit}**?
+# ConfirmInput_Prompt_e97TGR()
+[Activity
+    Text = ${ConfirmInput_Prompt_e97TGR_text()}
+]
+
+# ConfirmInput_Prompt_e97TGR_text()
+- Did you keep up your habit today?

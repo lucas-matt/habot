@@ -1625,11 +1625,14 @@ name = "rusty-habots"
 version = "0.1.0"
 dependencies = [
  "bson",
+ "chrono",
  "log 0.4.14",
  "mongodb",
  "rocket",
  "rocket_contrib",
  "serde",
+ "serde_json",
+ "urlencoding",
  "uuid",
 ]
 
@@ -2117,6 +2120,12 @@ dependencies = [
  "matches",
  "percent-encoding 2.1.0",
 ]
+
+[[package]]
+name = "urlencoding"
+version = "2.1.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "68b90931029ab9b034b300b797048cf23723400aa757e8a2bfb9d748102f9821"
 
 [[package]]
 name = "uuid"

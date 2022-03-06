@@ -151,6 +151,13 @@
               "activity": "${SendActivity_3z2XJp()}"
             },
             {
+              "$kind": "Microsoft.CancelAllDialogs",
+              "$designer": {
+                "id": "14TiYR"
+              },
+              "activityProcessed": true
+            },
+            {
               "$kind": "Microsoft.RepeatDialog",
               "$designer": {
                 "id": "9HdIzP"

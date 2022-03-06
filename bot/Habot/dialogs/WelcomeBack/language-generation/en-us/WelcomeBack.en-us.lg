@@ -10,10 +10,3 @@
 - ```Hi ${user.name} how're things?
 ```
 - Welcome back ${user.name}, hope that you're well!
-# ChoiceInput_Prompt_AIed0v()
-[Activity
-    Text = ${ChoiceInput_Prompt_AIed0v_text()}
-]
-
-# ChoiceInput_Prompt_AIed0v_text()
-- How've you been getting on with your habit to ${user.habit.habit}?

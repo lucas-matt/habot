@@ -1,0 +1,114 @@
+{
+  "$kind": "Microsoft.AdaptiveDialog",
+  "$designer": {
+    "id": "sxPpoq",
+    "name": "CheckIn",
+    "comment": ""
+  },
+  "autoEndDialog": true,
+  "defaultResultProperty": "dialog.result",
+  "triggers": [
+    {
+      "$kind": "Microsoft.OnBeginDialog",
+      "$designer": {
+        "name": "BeginDialog",
+        "description": "",
+        "id": "N6nHnw"
+      },
+      "actions": [
+        {
+          "$kind": "Microsoft.ConfirmInput",
+          "$designer": {
+            "id": "a1VlQd"
+          },
+          "defaultLocale": "en-us",
+          "disabled": false,
+          "maxTurnCount": 3,
+          "alwaysPrompt": false,
+          "allowInterruptions": false,
+          "prompt": "${ConfirmInput_Prompt_a1VlQd()}",
+          "unrecognizedPrompt": "",
+          "invalidPrompt": "",
+          "defaultValueResponse": "",
+          "choiceOptions": {
+            "includeNumbers": true
+          },
+          "property": "dialog.confirm"
+        },
+        {
+          "$kind": "Microsoft.IfCondition",
+          "$designer": {
+            "id": "j5zu7Q"
+          },
+          "condition": "=dialog.confirm == true",
+          "elseActions": [
+            {
+              "$kind": "Microsoft.CancelAllDialogs",
+              "$designer": {
+                "id": "pPOMVE"
+              },
+              "activityProcessed": true
+            },
+            {
+              "$kind": "Microsoft.BeginDialog",
+              "$designer": {
+                "id": "qcepDL"
+              },
+              "activityProcessed": true,
+              "dialog": "WelcomeUser"
+            }
+          ],
+          "actions": [
+            {
+              "$kind": "Microsoft.ConfirmInput",
+              "$designer": {
+                "id": "e97TGR"
+              },
+              "defaultLocale": "en-us",
+              "disabled": false,
+              "maxTurnCount": 3,
+              "alwaysPrompt": false,
+              "allowInterruptions": false,
+              "prompt": "${ConfirmInput_Prompt_e97TGR()}",
+              "unrecognizedPrompt": "",
+              "invalidPrompt": "",
+              "defaultValueResponse": "",
+              "choiceOptions": {
+                "includeNumbers": true
+              },
+              "property": "dialog.confirm"
+            },
+            {
+              "$kind": "Microsoft.IfCondition",
+              "$designer": {
+                "id": "xTmSV8"
+              },
+              "condition": "=dialog.confirm == true",
+              "actions": [
+                {
+                  "$kind": "Microsoft.HttpRequest",
+                  "$designer": {
+                    "id": "DCyDKr"
+                  },
+                  "resultProperty": "turn.results",
+                  "method": "POST",
+                  "url": "https://rusty-habots.azurewebsites.net/api/users/${user.id}/habits/${user.habit.id}/metrics",
+                  "body": {
+                    "user": "${user.id}",
+                    "habit": "${user.habit.id}"
+                  },
+                  "headers": {
+                    "": "="
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "generator": "CheckIn.lg",
+  "recognizer": "CheckIn.lu.qna",
+  "id": "CheckIn"
+}
