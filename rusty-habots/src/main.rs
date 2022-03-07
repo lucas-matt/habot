@@ -16,6 +16,7 @@ fn main() {
         .mount("/api", routes![routes::habits::remove_habit])
         .mount("/api", routes![routes::metrics::log_metric])
         .mount("/api", routes![routes::metrics::get_metrics])
+        .mount("/api", routes![routes::metrics::get_charts])
         .manage(db)
         .launch();
 }

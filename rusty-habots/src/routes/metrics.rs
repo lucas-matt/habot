@@ -1,10 +1,11 @@
+use std::collections::HashSet;
 use crate::data::UberRepository;
-use crate::model::{Charts, Metric};
+use crate::model::{Charts, Metric, Stats};
 use log::{info, warn};
 use rocket::http::{RawStr, Status};
 use rocket::State;
 use rocket_contrib::json::Json;
-use std::time::{SystemTime};
+use std::time::{SystemTime, UNIX_EPOCH};
 use serde::{Deserialize, Serialize};
 use urlencoding::encode;
 
@@ -44,6 +45,7 @@ pub fn get_metrics(
 
 const QUICKCHART: &str = "https://quickchart.io/chart";
 
+#[get("/users/<_user_id>/habits/<habit_id>/stats")]
 pub fn get_charts(
     repo: State<Box<dyn UberRepository + Sync + Send>>,
     _user_id: &RawStr,
@@ -51,15 +53,21 @@ pub fn get_charts(
 ) -> Result<Json<Charts>, Status> {
     let result = repo.find_metrics(habit_id.to_string());
     match result {
-        Some(metrics) => Ok(Json(build_charts(&metrics))),
+        Some(metrics) => {
+            let charts = build_charts(&metrics)?;
+            Ok(Json(charts))
+        },
         None => Err(Status::NotFound),
     }
 }
 
-fn build_charts(metrics: &Vec<Metric>) -> Charts {
-    return Charts {
-        progress: "".to_string()
-    }
+fn build_charts(metrics: &Vec<Metric>) -> Result<Charts, Status> {
+    let stats = into_weekly_figures(metrics);
+    let chart = build_progress_chart(&stats);
+    return Ok(Charts {
+        progress_chart_uri: as_chart_uri(chart)?,
+        stats
+    })
 }
 
 #[derive(Serialize, Deserialize, Debug, PartialEq)]
@@ -159,26 +167,38 @@ struct Font {
 
 }
 
-#[derive(PartialEq, Debug)]
-struct Stats {
+const DAY:u64 = 60 * 60 * 24;
 
-    success: u8
-
-}
+const WEEK:u64 = DAY * 7;
 
 fn into_weekly_figures(metrics: &Vec<Metric>) -> Stats {
+    let now = SystemTime::now().duration_since(UNIX_EPOCH).expect("Need system time").as_secs();
+    let days:HashSet<u64> = metrics.iter()
+        .filter(|metric| match metric.time {
+            Some(time) => time > now - WEEK,
+            _ => false
+        })
+        .map(|metric| {
+            let time = metric.time.unwrap();
+            time - (time % DAY)
+        })
+        .collect();
     Stats {
-        success: 0
+        success: days.len() as u8
     }
 }
 
-fn build_progress_chart(metrics: &Vec<Metric>) -> Chart {
+const DAYS_IN_WEEK:f32 = 7.0;
+
+fn build_progress_chart(stats: &Stats) -> Chart {
+    let perct = ((stats.success as f32) / DAYS_IN_WEEK) * 100.0;
+    let perct:u32 = perct.round() as u32;
     Chart {
         chart_type: "doughnut".to_string(),
         data: Data {
             datasets: vec![Dataset {
                 label: "foo".to_string(),
-                data: vec![0, 100]
+                data: vec![perct, 100 - perct]
             }]
         },
         options: Options {
@@ -197,7 +217,7 @@ fn build_progress_chart(metrics: &Vec<Metric>) -> Chart {
                             size: "25".to_string()
                         }
                     }, Label {
-                        text: "\n0%".to_string(),
+                        text: format!("\n{}%", perct).to_string(),
                         color: None,
                         font: Font {
                             size: "40".to_string()
@@ -216,7 +236,7 @@ fn as_chart_uri(chart:Chart) -> Result<String, Status> {
             let encoded = encode(repl.as_str()).to_string();
             Ok(format!("{}?c={}", QUICKCHART, encoded))
         },
-        Err(err) => Err(Status::InternalServerError)
+        Err(_) => Err(Status::InternalServerError)
     }
 }
 
@@ -228,7 +248,8 @@ mod tests {
 
     #[test]
     fn test_no_metrics() {
-        let chart = build_progress_chart(&Vec::new());
+        let stats = into_weekly_figures(&Vec::new());
+        let chart = build_progress_chart(&stats);
         assert_eq!(Chart {
             chart_type: "doughnut".to_string(),
             data: Data {
@@ -320,13 +341,11 @@ mod tests {
             user: "3".to_string(),
             time: Some(100)
         };
-        let stats = into_weekly_figures(&Vec::new());
+        let stats = into_weekly_figures(&vec![metric]);
         assert_eq!(Stats {
             success: 0
         }, stats);
     }
-
-    const DAY:u64 = 60 * 60 * 24;
 
     #[test]
     fn test_three_days() {
@@ -337,12 +356,12 @@ mod tests {
             user: "3".to_string(),
             time: Some(now - DAY)
         }, Metric {
-            id: Some("1".to_string()),
+            id: Some("2".to_string()),
             habit: "2".to_string(),
             user: "3".to_string(),
             time: Some(now -  DAY - DAY)
         }, Metric {
-            id: Some("1".to_string()),
+            id: Some("3".to_string()),
             habit: "2".to_string(),
             user: "3".to_string(),
             time: Some(now -  DAY - DAY - DAY)
@@ -354,8 +373,28 @@ mod tests {
     }
 
     #[test]
-    fn test_multi_days() {
-
+    fn test_multi_same_days() {
+        let now = SystemTime::now().duration_since(UNIX_EPOCH).expect("Need system time").as_secs();
+        let metrics = vec![Metric {
+            id: Some("1".to_string()),
+            habit: "2".to_string(),
+            user: "3".to_string(),
+            time: Some(now - DAY)
+        }, Metric {
+            id: Some("2".to_string()),
+            habit: "2".to_string(),
+            user: "3".to_string(),
+            time: Some(now -  DAY - DAY)
+        }, Metric {
+            id: Some("3".to_string()),
+            habit: "2".to_string(),
+            user: "3".to_string(),
+            time: Some(now -  DAY - DAY)
+        }];
+        let stats = into_weekly_figures(&metrics);
+        assert_eq!(Stats {
+            success: 2
+        }, stats);
     }
 
 }

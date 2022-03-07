@@ -12,11 +12,11 @@ pub struct Habit {
     #[serde(rename = "name")]
     pub name: String,
 
-    #[serde(rename = "action")]
-    pub action: String,
+    #[serde(rename = "action", skip_serializing_if = "Option::is_none",)]
+    pub action: Option<String>,
 
-    #[serde(rename = "habit")]
-    pub habit: String,
+    #[serde(rename = "habit", skip_serializing_if = "Option::is_none",)]
+    pub habit: Option<String>,
 
 }
 
@@ -48,14 +48,22 @@ pub struct Metric {
 
 }
 
+#[derive(PartialEq, Debug, Serialize, Deserialize)]
+pub struct Stats {
+
+    #[serde(rename = "success")]
+    pub success: u8
+
+}
+
 #[derive(Serialize, Deserialize, Debug, PartialEq)]
 pub struct Charts {
 
-    #[serde(rename = "progress")]
-    pub progress: String,
+    #[serde(rename = "progressChartUri")]
+    pub progress_chart_uri: String,
 
-    // #[serde(rename = "timeline")]
-    // pub timeline: String
+    #[serde(rename = "stats")]
+    pub stats: Stats
 
 }
 
