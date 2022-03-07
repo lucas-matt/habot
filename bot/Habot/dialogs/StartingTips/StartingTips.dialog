@@ -22,6 +22,14 @@
             "id": "NOqCmn"
           },
           "activity": "${SendActivity_NOqCmn()}"
+        },
+        {
+          "$kind": "Microsoft.BeginDialog",
+          "$designer": {
+            "id": "aS9tz8"
+          },
+          "activityProcessed": true,
+          "dialog": "EndSession"
         }
       ]
     }

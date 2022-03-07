@@ -85,8 +85,7 @@
               "url": "https://rusty-habots.azurewebsites.net/api/users/${user.id}/habits",
               "body": {
                 "user": "${user.id}",
-                "name": "${user.habit.action} ${user.habit.habit}",
-                "type": "Health"
+                "name": "${user.habit.action} ${user.habit.habit}"
               },
               "headers": {
                 "Content-Type": "application/json"
@@ -167,6 +166,14 @@
             }
           ],
           "condition": "=dialog.habitConfirm == true"
+        },
+        {
+          "$kind": "Microsoft.BeginDialog",
+          "$designer": {
+            "id": "FFa3w8"
+          },
+          "activityProcessed": true,
+          "dialog": "EndSession"
         }
       ]
     }

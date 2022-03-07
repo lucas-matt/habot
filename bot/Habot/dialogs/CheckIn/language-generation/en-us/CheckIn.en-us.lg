@@ -1,17 +1,55 @@
 [import](common.lg)
 
-# ConfirmInput_Prompt_a1VlQd()
+# ConfirmInput_Prompt_Yd5k1m()
 [Activity
-    Text = ${ConfirmInput_Prompt_a1VlQd_text()}
+    Text = ${ConfirmInput_Prompt_Yd5k1m_text()}
 ]
 
-# ConfirmInput_Prompt_a1VlQd_text()
-- - Are you ready to check in with your habit to **${user.habit.habit}**?
-- - Shall we check in with your habit to **${user.habit.habit}**?
-# ConfirmInput_Prompt_e97TGR()
+# ConfirmInput_Prompt_Yd5k1m_text()
+- Did you manage to keep up your habit to ${user.habit.habit} today?
+# SendActivity_5xbMAf()
 [Activity
-    Text = ${ConfirmInput_Prompt_e97TGR_text()}
+    Text = ${SendActivity_5xbMAf_text()}
 ]
 
-# ConfirmInput_Prompt_e97TGR_text()
-- Did you keep up your habit today?
+# SendActivity_5xbMAf_text()
+- ![](${turn.results.content.progressChartUri})
+# SendActivity_IIcIGJ()
+[Activity
+    Text = ${SendActivity_IIcIGJ_text()}
+]
+
+# SendActivity_IIcIGJ_text()
+- ![](https://media3.giphy.com/media/ISOckXUybVfQ4/200w.webp?cid=ecf05e476wt9wyqc6i5wif9dn1iqrpsdq69soifvp3l77kqi&rid=200w.webp&ct=g)
+- ![](https://media1.giphy.com/media/gfsQffBnuc6e096brx/200w.webp?cid=ecf05e476wt9wyqc6i5wif9dn1iqrpsdq69soifvp3l77kqi&rid=200w.webp&ct=g)
+- ![](https://media1.giphy.com/media/8boMf1VXVHoJy/200w.webp?cid=ecf05e47lzotkkv6usw5idj1tnyfgv6clm0kbzc8kjgm2xi0&rid=200w.webp&ct=g)
+# SendActivity_IWOMlD()
+[Activity
+    Text = ${SendActivity_IWOMlD_text()}
+]
+
+# SendActivity_IWOMlD_text()
+- Oh dear, looks like you've been having a little trouble.
+# SendActivity_U1uGAl()
+[Activity
+    Text = ${SendActivity_U1uGAl_text()}
+]
+
+# SendActivity_U1uGAl_text()
+- Well done, looks like you're doing well
+# SendActivity_c7LTgn()
+[Activity
+    Text = ${SendActivity_c7LTgn_text()}
+]
+
+# SendActivity_c7LTgn_text()
+- ![](https://media0.giphy.com/media/3o6fIUZTTDl0IDjbZS/200.webp?cid=ecf05e47jnw978g8lhmdtpp1m1b23dr2jco7tzqyygse5wvh&rid=200.webp&ct=g)
+- ![](https://media4.giphy.com/media/n5VaQoW39Z9S0/200w.webp?cid=ecf05e47jnw978g8lhmdtpp1m1b23dr2jco7tzqyygse5wvh&rid=200w.webp&ct=g)
+- ![](https://media0.giphy.com/media/l4q7TIW8nEZYOJUf6/200w.webp?cid=ecf05e47jnw978g8lhmdtpp1m1b23dr2jco7tzqyygse5wvh&rid=200w.webp&ct=g)
+# ConfirmInput_Prompt_7h2zew()
+[Activity
+    Text = ${ConfirmInput_Prompt_7h2zew_text()}
+]
+
+# ConfirmInput_Prompt_7h2zew_text()
+- Would you like a little help?

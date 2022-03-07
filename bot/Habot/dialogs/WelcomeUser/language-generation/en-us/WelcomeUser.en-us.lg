@@ -11,3 +11,12 @@
 Together we can start a new habit or break an old one and I'll help you along the way.
 
 I'll also give you advice on how to stick with your habits and keep up your motiviation.```
+# SendActivity_DtzNee()
+[Activity
+    Text = ${SendActivity_DtzNee_text()}
+]
+
+# SendActivity_DtzNee_text()
+- ![](https://media1.giphy.com/media/E1w0yvMxBIv5M8WkL8/200w.webp?cid=ecf05e47fzodhsxwtk56tsurdfo4egr24si0xfs4z82j8uqr&rid=200w.webp&ct=g)
+- ![](https://media4.giphy.com/media/YrZECW1GgBkqat6F0B/200.webp?cid=ecf05e47fzodhsxwtk56tsurdfo4egr24si0xfs4z82j8uqr&rid=200.webp&ct=g)
+- ![](https://media3.giphy.com/media/ASd0Ukj0y3qMM/giphy.gif?cid=ecf05e4722nxjmxjq150o44j7rtt9cdepnh25ls7d9qv2h3k&rid=giphy.gif&ct=g)

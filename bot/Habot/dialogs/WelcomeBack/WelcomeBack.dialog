@@ -24,6 +24,13 @@
           "activity": "${SendActivity_5CMKT3()}"
         },
         {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "ViRYmQ"
+          },
+          "activity": "${SendActivity_ViRYmQ()}"
+        },
+        {
           "$kind": "Microsoft.HttpRequest",
           "$designer": {
             "id": "Vk8U9k"
@@ -56,6 +63,14 @@
                   "value": "=turn.results.content[0]._id"
                 }
               ]
+            },
+            {
+              "$kind": "Microsoft.BeginDialog",
+              "$designer": {
+                "id": "J5cp1c"
+              },
+              "activityProcessed": true,
+              "dialog": "CheckIn"
             }
           ],
           "elseActions": [

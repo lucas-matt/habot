@@ -16,13 +16,6 @@
       },
       "actions": [
         {
-          "$kind": "Microsoft.SendActivity",
-          "$designer": {
-            "id": "PUkSHf"
-          },
-          "activity": "${SendActivity_PUkSHf()}"
-        },
-        {
           "$kind": "Microsoft.SetProperty",
           "$designer": {
             "id": "vInL0A"

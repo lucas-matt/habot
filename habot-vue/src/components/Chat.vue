@@ -95,8 +95,6 @@ export default {
               token: '4Z2hRMp54Yc.Ml__NKAb2nhLldy2bePqOaspkwhw__bh_SGtlk1WvY8',
             }),
             store,
-            userID: 'YOUR_USER_ID',
-            username: 'Web Chat User',
             styleOptions
           },
           document.getElementById('webchat')

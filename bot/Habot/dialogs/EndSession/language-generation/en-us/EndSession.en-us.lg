@@ -1,0 +1,23 @@
+[import](common.lg)
+
+# SendActivity_pMMXOx()
+[Activity
+    Text = ${SendActivity_pMMXOx_text()}
+]
+
+# SendActivity_pMMXOx_text()
+- ```Oh well, that's all for now, good luck.
+
+Remember to check in every day!```
+- ```That's all for now, speak to you soon.
+
+Remember to check in every day!```
+# SendActivity_HIDxZJ()
+[Activity
+    Text = ${SendActivity_HIDxZJ_text()}
+]
+
+# SendActivity_HIDxZJ_text()
+- ![](https://media1.giphy.com/media/fxe8v45NNXFd4jdaNI/200w.webp?cid=ecf05e47474jo7edocgvudbazn5jfhvi37vws2roovwr06v0&rid=200w.webp&ct=g)
+- ![](https://media3.giphy.com/media/1ccd9l2mnpOQz96MZM/200.webp?cid=ecf05e47474jo7edocgvudbazn5jfhvi37vws2roovwr06v0&rid=200.webp&ct=g)
+- ![](https://media1.giphy.com/media/35EsMpEfGHkVoHbNTU/giphy.webp?cid=ecf05e47sykowrbn93nvxsfnmzeqli6qsmzjhjk9fc8j268f&rid=giphy.webp&ct=g)

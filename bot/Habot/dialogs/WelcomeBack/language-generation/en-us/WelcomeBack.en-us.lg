@@ -10,3 +10,12 @@
 - ```Hi ${user.name} how're things?
 ```
 - Welcome back ${user.name}, hope that you're well!
+# SendActivity_ViRYmQ()
+[Activity
+    Text = ${SendActivity_ViRYmQ_text()}
+]
+
+# SendActivity_ViRYmQ_text()
+- ![](https://media4.giphy.com/media/26BkNnO2qmCWTQuac/giphy.webp?cid=ecf05e47j7f7mm6dx1unvlx5gtgzi2pdfxco5covd5exb4o8&rid=giphy.webp&ct=g)
+- ![](https://media2.giphy.com/media/LPgFwCQg4HQBvPihcn/200.webp?cid=ecf05e47vnln8vpzet2zm5v23q9tokz14n94cj34212ygkne&rid=200.webp&ct=g)
+- ![](https://media4.giphy.com/media/3o7TKMt1VVNkHV2PaE/200w.webp?cid=ecf05e47vnln8vpzet2zm5v23q9tokz14n94cj34212ygkne&rid=200w.webp&ct=g)

@@ -19,14 +19,14 @@
         {
           "$kind": "Microsoft.ConfirmInput",
           "$designer": {
-            "id": "a1VlQd"
+            "id": "Yd5k1m"
           },
           "defaultLocale": "en-us",
           "disabled": false,
           "maxTurnCount": 3,
           "alwaysPrompt": false,
           "allowInterruptions": false,
-          "prompt": "${ConfirmInput_Prompt_a1VlQd()}",
+          "prompt": "${ConfirmInput_Prompt_Yd5k1m()}",
           "unrecognizedPrompt": "",
           "invalidPrompt": "",
           "defaultValueResponse": "",
@@ -38,70 +38,130 @@
         {
           "$kind": "Microsoft.IfCondition",
           "$designer": {
-            "id": "j5zu7Q"
+            "id": "39ipdi"
           },
           "condition": "=dialog.confirm == true",
-          "elseActions": [
+          "actions": [
             {
-              "$kind": "Microsoft.CancelAllDialogs",
+              "$kind": "Microsoft.HttpRequest",
               "$designer": {
-                "id": "pPOMVE"
+                "id": "EzhASb"
               },
-              "activityProcessed": true
+              "resultProperty": "turn.results",
+              "method": "POST",
+              "url": "https://rusty-habots.azurewebsites.net/api/users/${user.id}/habits/${user.habit.id}/metrics",
+              "body": {
+                "user": "${user.id}",
+                "habit": "${user.habit.id}"
+              }
+            }
+          ]
+        },
+        {
+          "$kind": "Microsoft.HttpRequest",
+          "$designer": {
+            "id": "9DOzGl"
+          },
+          "resultProperty": "turn.results",
+          "method": "GET",
+          "url": "https://rusty-habots.azurewebsites.net/api/users/${user.id}/habits/${user.habit.id}/stats"
+        },
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "5xbMAf"
+          },
+          "activity": "${SendActivity_5xbMAf()}"
+        },
+        {
+          "$kind": "Microsoft.IfCondition",
+          "$designer": {
+            "id": "oIOC2P"
+          },
+          "condition": "=turn.results.content.stats.success < 4",
+          "actions": [
+            {
+              "$kind": "Microsoft.SendActivity",
+              "$designer": {
+                "id": "IIcIGJ"
+              },
+              "activity": "${SendActivity_IIcIGJ()}"
             },
             {
-              "$kind": "Microsoft.BeginDialog",
+              "$kind": "Microsoft.SendActivity",
               "$designer": {
-                "id": "qcepDL"
+                "id": "IWOMlD"
               },
-              "activityProcessed": true,
-              "dialog": "WelcomeUser"
-            }
-          ],
-          "actions": [
+              "activity": "${SendActivity_IWOMlD()}"
+            },
             {
               "$kind": "Microsoft.ConfirmInput",
               "$designer": {
-                "id": "e97TGR"
+                "id": "7h2zew"
               },
               "defaultLocale": "en-us",
               "disabled": false,
               "maxTurnCount": 3,
               "alwaysPrompt": false,
               "allowInterruptions": false,
-              "prompt": "${ConfirmInput_Prompt_e97TGR()}",
+              "prompt": "${ConfirmInput_Prompt_7h2zew()}",
               "unrecognizedPrompt": "",
               "invalidPrompt": "",
               "defaultValueResponse": "",
               "choiceOptions": {
-                "includeNumbers": true
+                "includeNumbers": true,
+                "inlineOrMore": ", or "
               },
-              "property": "dialog.confirm"
+              "property": "dialog.confirmhelp"
             },
             {
               "$kind": "Microsoft.IfCondition",
               "$designer": {
-                "id": "xTmSV8"
+                "id": "Bs2lNH"
               },
-              "condition": "=dialog.confirm == true",
-              "actions": [
+              "condition": "=dialog.confirmhelp == true",
+              "elseActions": [
                 {
-                  "$kind": "Microsoft.HttpRequest",
+                  "$kind": "Microsoft.BeginDialog",
                   "$designer": {
-                    "id": "DCyDKr"
+                    "id": "OIcB19"
                   },
-                  "resultProperty": "turn.results",
-                  "method": "POST",
-                  "url": "https://rusty-habots.azurewebsites.net/api/users/${user.id}/habits/${user.habit.id}/metrics",
-                  "body": {
-                    "user": "${user.id}",
-                    "habit": "${user.habit.id}"
-                  },
-                  "headers": {
-                    "": "="
-                  }
+                  "activityProcessed": true,
+                  "dialog": "EndSession"
                 }
               ]
+            },
+            {
+              "$kind": "Microsoft.BeginDialog",
+              "$designer": {
+                "id": "GcQCWD"
+              },
+              "activityProcessed": true,
+              "dialog": "Help"
+            }
+          ],
+          "elseActions": [
+            {
+              "$kind": "Microsoft.SendActivity",
+              "$designer": {
+                "id": "U1uGAl"
+              },
+              "activity": "${SendActivity_U1uGAl()}"
+            },
+            {
+              "$kind": "Microsoft.SendActivity",
+              "$designer": {
+                "id": "c7LTgn"
+              },
+              "activity": "${SendActivity_c7LTgn()}"
+            },
+            {
+              "$kind": "Microsoft.BeginDialog",
+              "$designer": {
+                "id": "fYcjZC"
+              },
+              "activityProcessed": true,
+              "dialog": "EndSession"
             }
           ]
         }

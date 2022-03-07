@@ -1,0 +1,24 @@
+{
+  "$kind": "Microsoft.AdaptiveDialog",
+  "$designer": {
+    "id": "v1x6mJ",
+    "name": "Help",
+    "comment": ""
+  },
+  "autoEndDialog": true,
+  "defaultResultProperty": "dialog.result",
+  "triggers": [
+    {
+      "$kind": "Microsoft.OnBeginDialog",
+      "$designer": {
+        "name": "BeginDialog",
+        "description": "",
+        "id": "ISZt4d"
+      },
+      "actions": []
+    }
+  ],
+  "generator": "Help.lg",
+  "recognizer": "Help.lu.qna",
+  "id": "Help"
+}

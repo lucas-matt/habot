@@ -49,7 +49,7 @@ pub struct Metric {
 }
 
 #[derive(PartialEq, Debug, Serialize, Deserialize)]
-pub struct Stats {
+pub struct  Stats {
 
     #[serde(rename = "success")]
     pub success: u8

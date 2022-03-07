@@ -1,8 +1,8 @@
 {
   "$kind": "Microsoft.AdaptiveDialog",
   "$designer": {
-    "id": "L9Vgon",
-    "name": "WelcomeUser",
+    "id": "g4DYgu",
+    "name": "EndSession",
     "comment": ""
   },
   "autoEndDialog": true,
@@ -13,35 +13,40 @@
       "$designer": {
         "name": "BeginDialog",
         "description": "",
-        "id": "HVZKmz"
+        "id": "vj91W9"
       },
       "actions": [
         {
           "$kind": "Microsoft.SendActivity",
           "$designer": {
-            "id": "ZLJDdS"
+            "id": "pMMXOx"
           },
-          "activity": "${SendActivity_ZLJDdS()}"
+          "activity": "${SendActivity_pMMXOx()}"
         },
         {
           "$kind": "Microsoft.SendActivity",
           "$designer": {
-            "id": "DtzNee"
+            "id": "HIDxZJ"
           },
-          "activity": "${SendActivity_DtzNee()}"
+          "activity": "${SendActivity_HIDxZJ()}"
         },
         {
-          "$kind": "Microsoft.BeginDialog",
+          "$kind": "Microsoft.CancelAllDialogs",
           "$designer": {
-            "id": "ahCnLZ"
+            "id": "dvRCBo"
           },
-          "activityProcessed": true,
-          "dialog": "NewHabit"
+          "activityProcessed": true
+        },
+        {
+          "$kind": "Microsoft.EndDialog",
+          "$designer": {
+            "id": "Oi9E7y"
+          }
         }
       ]
     }
   ],
-  "generator": "WelcomeUser.lg",
-  "recognizer": "WelcomeUser.lu.qna",
-  "id": "WelcomeUser"
+  "generator": "EndSession.lg",
+  "recognizer": "EndSession.lu.qna",
+  "id": "EndSession"
 }
