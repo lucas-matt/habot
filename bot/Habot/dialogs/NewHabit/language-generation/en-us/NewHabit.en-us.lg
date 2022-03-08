@@ -36,13 +36,6 @@ Here are some suggestions:
 
 # SendActivity_3z2XJp_text()
 - Oh sorry, I misunderstood ${dialog.habit}, let me try that again
-# SendActivity_0mwk6V()
-[Activity
-    Text = ${SendActivity_0mwk6V_text()}
-]
-
-# SendActivity_0mwk6V_text()
-- Let's look at a few tips to help you along the way.
 # SendActivity_xBrTAZ()
 [Activity
     Text = ${SendActivity_xBrTAZ_text()}

@@ -15,7 +15,180 @@
         "description": "",
         "id": "ISZt4d"
       },
-      "actions": []
+      "actions": [
+        {
+          "$kind": "Microsoft.ChoiceInput",
+          "$designer": {
+            "id": "jYlW4o"
+          },
+          "defaultLocale": "en-us",
+          "disabled": false,
+          "maxTurnCount": 3,
+          "alwaysPrompt": false,
+          "allowInterruptions": false,
+          "prompt": "${ChoiceInput_Prompt_jYlW4o()}",
+          "unrecognizedPrompt": "",
+          "invalidPrompt": "",
+          "defaultValueResponse": "",
+          "choiceOptions": {
+            "includeNumbers": true,
+            "inlineOrMore": ", or ",
+            "inlineOr": " or ",
+            "inlineSeparator": ", "
+          },
+          "choices": [
+            "Can't find the time",
+            "Lack of motivation",
+            "Lack of will power"
+          ],
+          "property": "dialog.choice"
+        },
+        {
+          "$kind": "Microsoft.SwitchCondition",
+          "$designer": {
+            "id": "Iy236D"
+          },
+          "condition": "=dialog.choice",
+          "default": [],
+          "cases": [
+            {
+              "value": "Can't find the time",
+              "actions": [
+                {
+                  "$kind": "Microsoft.SendActivity",
+                  "$designer": {
+                    "id": "3eVJ4h"
+                  },
+                  "activity": "${SendActivity_3eVJ4h()}"
+                },
+                {
+                  "$kind": "Microsoft.SendActivity",
+                  "$designer": {
+                    "id": "OLUmfg"
+                  },
+                  "activity": "${SendActivity_OLUmfg()}"
+                },
+                {
+                  "$kind": "Microsoft.SendActivity",
+                  "$designer": {
+                    "id": "Xakst0"
+                  },
+                  "activity": "${SendActivity_Xakst0()}"
+                },
+                {
+                  "$kind": "Microsoft.SendActivity",
+                  "$designer": {
+                    "id": "x1peKu"
+                  },
+                  "activity": "${SendActivity_x1peKu()}"
+                }
+              ]
+            },
+            {
+              "value": "Lack of motivation",
+              "actions": [
+                {
+                  "$kind": "Microsoft.SendActivity",
+                  "$designer": {
+                    "id": "i1EHHG"
+                  },
+                  "activity": "${SendActivity_i1EHHG()}"
+                },
+                {
+                  "$kind": "Microsoft.SendActivity",
+                  "$designer": {
+                    "id": "lnyvWl"
+                  },
+                  "activity": "${SendActivity_lnyvWl()}"
+                },
+                {
+                  "$kind": "Microsoft.SendActivity",
+                  "$designer": {
+                    "id": "ytiWqT"
+                  },
+                  "activity": "${SendActivity_ytiWqT()}"
+                },
+                {
+                  "$kind": "Microsoft.SendActivity",
+                  "$designer": {
+                    "id": "0F02rR"
+                  },
+                  "activity": "${SendActivity_0F02rR()}"
+                },
+                {
+                  "$kind": "Microsoft.SendActivity",
+                  "$designer": {
+                    "id": "xQNtxo"
+                  },
+                  "activity": "${SendActivity_xQNtxo()}"
+                }
+              ]
+            },
+            {
+              "value": "Lack of will power",
+              "actions": [
+                {
+                  "$kind": "Microsoft.SendActivity",
+                  "$designer": {
+                    "id": "zg7TMh"
+                  },
+                  "activity": "${SendActivity_zg7TMh()}"
+                },
+                {
+                  "$kind": "Microsoft.SendActivity",
+                  "$designer": {
+                    "id": "57OU1E"
+                  },
+                  "activity": "${SendActivity_57OU1E()}"
+                },
+                {
+                  "$kind": "Microsoft.SendActivity",
+                  "$designer": {
+                    "id": "n2lPU9"
+                  },
+                  "activity": "${SendActivity_n2lPU9()}"
+                },
+                {
+                  "$kind": "Microsoft.SendActivity",
+                  "$designer": {
+                    "id": "IMSZOD"
+                  },
+                  "activity": "${SendActivity_IMSZOD()}"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "$kind": "Microsoft.ChoiceInput",
+          "$designer": {
+            "id": "lJmW89"
+          },
+          "defaultLocale": "en-us",
+          "disabled": false,
+          "maxTurnCount": 3,
+          "alwaysPrompt": false,
+          "allowInterruptions": false,
+          "prompt": "${ChoiceInput_Prompt_lJmW89()}",
+          "unrecognizedPrompt": "",
+          "invalidPrompt": "",
+          "defaultValueResponse": "",
+          "choiceOptions": {
+            "includeNumbers": true
+          },
+          "choices": [
+            "Done"
+          ]
+        },
+        {
+          "$kind": "Microsoft.BeginDialog",
+          "$designer": {
+            "id": "2WagVk"
+          },
+          "activityProcessed": true,
+          "dialog": "EndSession"
+        }
+      ]
     }
   ],
   "generator": "Help.lg",

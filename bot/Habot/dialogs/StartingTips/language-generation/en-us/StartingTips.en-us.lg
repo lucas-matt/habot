@@ -1,9 +1,0 @@
-[import](common.lg)
-
-# SendActivity_NOqCmn()
-[Activity
-    Text = ${SendActivity_NOqCmn_text()}
-]
-
-# SendActivity_NOqCmn_text()
-- Now you want to *${user.habit.action} ${user.habit.habit} there are a few things you should know.

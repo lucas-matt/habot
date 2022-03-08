@@ -1,1 +1,132 @@
 [import](common.lg)
+
+# ChoiceInput_Prompt_jYlW4o()
+[Activity
+    Text = ${ChoiceInput_Prompt_jYlW4o_text()}
+]
+
+# ChoiceInput_Prompt_jYlW4o_text()
+- What do you seem to be having the most trouble with?
+# SendActivity_IMSZOD()
+[Activity
+    Attachments = ${SendActivity_IMSZOD_attachment_lHIrI8()}
+]
+
+# SendActivity_IMSZOD_attachment_lHIrI8()
+[VideoCard
+    image = https://i.ytimg.com/an_webp/8UxTdfyct6E/mqdefault_6s.webp?du=3000&sqp=CJS9nZEG&rs=AOn4CLD3UiWCRFKzvtOCbguuAJaCJyKrXw
+    media = https://www.youtube.com/watch?v=8UxTdfyct6E
+]
+# ChoiceInput_Prompt_lJmW89()
+[Activity
+    Text = ${ChoiceInput_Prompt_lJmW89_text()}
+]
+
+# ChoiceInput_Prompt_lJmW89_text()
+- Let me know when you're done watching
+# SendActivity_zg7TMh()
+[Activity
+    Text = ${SendActivity_zg7TMh_text()}
+]
+
+# SendActivity_zg7TMh_text()
+- ```Try *changing your environment*
+
+*E.g. if you want to practice guitar more frequently, place your guitar stand in the middle of the living room.*
+```
+# SendActivity_57OU1E()
+[Activity
+    Text = ${SendActivity_57OU1E_text()}
+]
+
+# SendActivity_57OU1E_text()
+- ```If you want to make a habit a big part of your life, make the cue a big part of your environment. 
+
+By sprinkling triggers throughout your environment you increase the odds that you'll think about your habit throughout the day.
+
+Habits can be easier to change in a new environment. It helps to escape the subtle triggers and cue that nudge you the wrong way.
+```
+# SendActivity_n2lPU9()
+[Activity
+    Text = ${SendActivity_n2lPU9_text()}
+]
+
+# SendActivity_n2lPU9_text()
+- ```Whever possible, avoid mixing the context of one habit with another.
+
+**Structure your life in a way that does not require willpower and self\-control**. Create a more disciplined environment.```
+# SendActivity_3eVJ4h()
+[Activity
+    Text = ${SendActivity_3eVJ4h_text()}
+]
+
+# SendActivity_3eVJ4h_text()
+- Try *habit stacking*
+# SendActivity_OLUmfg()
+[Activity
+    Text = ${SendActivity_OLUmfg_text()}
+]
+
+# SendActivity_OLUmfg_text()
+- ```Identify habits you already have and stack your new behaviour on top.
+
+  After ***current habit*** I will ***new habit***.
+```
+# SendActivity_Xakst0()
+[Activity
+    Text = ${SendActivity_Xakst0_text()}
+]
+
+# SendActivity_Xakst0_text()
+- Consider when you're most likely to be successful. Don't add a habit when you're occupied with something else.
+# SendActivity_x1peKu()
+[Activity
+    Attachments = ${SendActivity_x1peKu_attachment_MwLbGm()}
+]
+
+# SendActivity_x1peKu_attachment_MwLbGm()
+[VideoCard
+    title = Habit Stacking
+    subtitle = Create Your Perfect Routime
+    media = https://www.youtube.com/watch?v=zjBhC4C-9KU
+]
+# SendActivity_i1EHHG()
+[Activity
+    Text = ${SendActivity_i1EHHG_text()}
+]
+
+# SendActivity_i1EHHG_text()
+- Try the *two minute rule*
+# SendActivity_lnyvWl()
+[Activity
+    Text = ${SendActivity_lnyvWl_text()}
+]
+
+# SendActivity_lnyvWl_text()
+- Start something that takes two minutes, but that leads to bigger things. E.g. taking a taxi to the gym, the taxi only takes 2 minutes, but once it's done the gyms leads afterwards.
+# SendActivity_ytiWqT()
+[Activity
+    Text = ${SendActivity_ytiWqT_text()}
+]
+
+# SendActivity_ytiWqT_text()
+- Take the first step. *Decisive moments* - a handful of moments that lead to an outsized impact. We are limited by where our habits lead us.
+# SendActivity_0F02rR()
+[Activity
+    Text = ${SendActivity_0F02rR_text()}
+]
+
+# SendActivity_0F02rR_text()
+- ```When you start a new habit, it should take less than two minutes to do.
+
+Read before bed becomes, read one page. Run three miles, becomes put on running shoes```
+# SendActivity_xQNtxo()
+[Activity
+    Attachments = ${SendActivity_xQNtxo_attachment_HStJKv()}
+]
+
+# SendActivity_xQNtxo_attachment_HStJKv()
+[VideoCard
+    title = Two Minute Rule
+    media = https://www.youtube.com/watch?v=HM7dgEF8H60
+]

@@ -70,14 +70,6 @@
               "dialog": "WelcomeUser"
             }
           ]
-        },
-        {
-          "$kind": "Microsoft.BeginDialog",
-          "$designer": {
-            "id": "3ww1OP"
-          },
-          "activityProcessed": true,
-          "dialog": "CheckHabits"
         }
       ]
     }

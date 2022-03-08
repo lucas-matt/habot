@@ -106,21 +106,6 @@
                     "id": "WbrRPf"
                   },
                   "activity": "${SendActivity_WbrRPf()}"
-                },
-                {
-                  "$kind": "Microsoft.SendActivity",
-                  "$designer": {
-                    "id": "0mwk6V"
-                  },
-                  "activity": "${SendActivity_0mwk6V()}"
-                },
-                {
-                  "$kind": "Microsoft.BeginDialog",
-                  "$designer": {
-                    "id": "mTqZpu"
-                  },
-                  "activityProcessed": true,
-                  "dialog": "StartingTips"
                 }
               ],
               "elseActions": [
